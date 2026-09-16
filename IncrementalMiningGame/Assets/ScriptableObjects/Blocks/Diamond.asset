@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b74b50c65c447344080ffbcb6d8ab333, type: 3}
-  m_Name: Copper
+  m_Name: Diamond
   m_EditorClassIdentifier: Assembly-CSharp::BlockData
-  Health: 35
-  Value: 12
+  Health: 15
+  Value: 4
   Weight: 1
   GenerationType: 2
-  SpawnRate: 0.03
-  MinClusterSize: 3
+  SpawnRate: 0.1
+  MinClusterSize: 1
   MaxClusterSize: 6
   MinClusterCount: 5
   MaxClusterCount: 12
-  Layers: 0100000002000000
+  Layers: 03000000

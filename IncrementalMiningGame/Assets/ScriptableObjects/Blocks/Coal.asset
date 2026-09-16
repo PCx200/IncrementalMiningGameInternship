@@ -15,5 +15,10 @@ MonoBehaviour:
   Health: 15
   Value: 4
   Weight: 1
-  SpawnRate: 60
-  Layers: 01000000
+  GenerationType: 2
+  SpawnRate: 0.1
+  MinClusterSize: 4
+  MaxClusterSize: 9
+  MinClusterCount: 10
+  MaxClusterCount: 13
+  Layers: 0100000002000000

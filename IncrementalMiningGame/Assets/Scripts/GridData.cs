@@ -6,5 +6,8 @@ public class GridData : ScriptableObject
 {
     public int Width;
     public int Depth;
+
+    public BlockData BaseBlock;
     public List<int> LayersDepth;
+
 }
