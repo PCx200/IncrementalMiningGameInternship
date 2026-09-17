@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74b50c65c447344080ffbcb6d8ab333, type: 3}
   m_Name: Diamond
   m_EditorClassIdentifier: Assembly-CSharp::BlockData
+  Prefab: {fileID: 5065634904472367979, guid: 781b8fe54a33ad14292cda1b3aab7872, type: 3}
   Health: 15
   Value: 4
   Weight: 1
@@ -21,4 +22,3 @@ MonoBehaviour:
   MaxClusterSize: 6
   MinClusterCount: 5
   MaxClusterCount: 12
-  Layers: 03000000

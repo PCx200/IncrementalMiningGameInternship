@@ -1,10 +1,15 @@
 using UnityEngine;
 
-public static class NoiseGenerator
+public class NoiseGenerator
 {
-    private static float[,] noiseMap;
+    private float[,] noiseMap;
 
-    public static float[,] GenerateNoise(int width, int height, float scale, int octaves, float persistence, float lacunarity)
+    public NoiseGenerator(float[,] noiseMap)
+    {
+        this.noiseMap = noiseMap;
+    }
+
+    public float[,] GeneratePerlinNoise(int width, int height, float scale, int octaves, float persistence, float lacunarity)
     {
         noiseMap = new float[width, height];
 
@@ -21,8 +26,6 @@ public static class NoiseGenerator
                     float yCoord = (y + Seed.RandomINT(int.MinValue, int.MaxValue)) * scale;
                     noiseMap[x, y] = Mathf.PerlinNoise(xCoord * frequency, yCoord * frequency) * amplitude;
                 }
-
-
             }
         }
 

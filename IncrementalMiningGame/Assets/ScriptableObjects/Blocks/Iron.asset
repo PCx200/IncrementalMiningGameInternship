@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74b50c65c447344080ffbcb6d8ab333, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: Assembly-CSharp::BlockData
+  Prefab: {fileID: 1192785716669997791, guid: 23e2e3c203bfbec4384b440d12a1e6b1, type: 3}
   Health: 50
   Value: 16
   Weight: 1
@@ -21,4 +22,3 @@ MonoBehaviour:
   MaxClusterSize: 6
   MinClusterCount: 3
   MaxClusterCount: 8
-  Layers: 0100000002000000

@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 1236674517}
   - component: {fileID: 1236674518}
   m_Layer: 0
-  m_Name: GridGenerator
+  m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -479,7 +479,17 @@ MonoBehaviour:
   SEED: 1
   data: {fileID: 11400000, guid: 3b57594cba5caaf45be4ac3ef1f26209, type: 2}
   blocks:
-  - {fileID: 1754502099439603099, guid: 711be4e34f74c924881b14de9ec52646, type: 3}
+  - {fileID: 11400000, guid: d758169dfddfc4d48b96e68c53761812, type: 2}
+  - {fileID: 11400000, guid: 19d1a4842db58c14c8efc8ed88a1fa9f, type: 2}
+  - {fileID: 11400000, guid: 6d335ef029b2f4c4d9e6415fb2bcbe10, type: 2}
+  - {fileID: 11400000, guid: 0165d88425442934bb23e57a18c0224b, type: 2}
+  - {fileID: 11400000, guid: 7c52dc6921b3aaf43bf695a09f195427, type: 2}
+  layers:
+  - {fileID: 11400000, guid: faa1d99112ff5c542860918c03425e2c, type: 2}
+  - {fileID: 11400000, guid: 3a4b9ba960825234d9f6dd0028f0f860, type: 2}
+  - {fileID: 11400000, guid: a822e30313e2ec044a7c96905edbd1c7, type: 2}
+  - {fileID: 11400000, guid: bde3b9c171b37e9418aeb2f207909745, type: 2}
+  - {fileID: 11400000, guid: b83ca64d168cc5449b7e3c257256291c, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

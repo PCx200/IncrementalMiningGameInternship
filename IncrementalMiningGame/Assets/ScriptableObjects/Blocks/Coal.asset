@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b74b50c65c447344080ffbcb6d8ab333, type: 3}
   m_Name: Coal
   m_EditorClassIdentifier: Assembly-CSharp::BlockData
+  Prefab: {fileID: 1837569671967742127, guid: 8ce7875332560d945aec59c6053ac599, type: 3}
   Health: 15
   Value: 4
   Weight: 1
@@ -21,4 +22,3 @@ MonoBehaviour:
   MaxClusterSize: 9
   MinClusterCount: 10
   MaxClusterCount: 13
-  Layers: 0100000002000000

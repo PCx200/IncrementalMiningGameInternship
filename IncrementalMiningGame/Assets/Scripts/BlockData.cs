@@ -10,6 +10,8 @@ public enum BlockGenerationType
 [CreateAssetMenu(fileName = "BlockData", menuName = "Scriptable Objects/BlockData")]
 public class BlockData : ScriptableObject
 {
+    public Block Prefab;
+
     public float Health;
     public int Value;
     public float Weight;
@@ -24,7 +26,4 @@ public class BlockData : ScriptableObject
 
     public int MinClusterCount;
     public int MaxClusterCount;
-
-    public List<int> Layers = new();
-
 }
