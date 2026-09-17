@@ -5,7 +5,6 @@ using UnityEngine;
 public class GridGenerator : MonoBehaviour
 {
     [SerializeField] private int SEED;
-    private System.Random rand;
 
     [SerializeField] private GridData data;
     public GridData Data => data;
@@ -16,10 +15,22 @@ public class GridGenerator : MonoBehaviour
 
     List<Layer> layers = new();
 
+    float[,] noise;
+
 
     private void Start()
     {
-        GenerateSeed();
+        if (SEED == 0)
+        {
+            SEED = Seed.GenerateSeed();
+        }
+        else
+        {
+            Seed.PickSeed(SEED);
+        }
+
+
+        noise = NoiseGenerator.GenerateNoise(data.Width, data.Depth, 0.001f, 3, 0.5f, 3.0f);
 
         GroupBlocksInSameLayer();
 
@@ -30,24 +41,17 @@ public class GridGenerator : MonoBehaviour
         GenerateOres();
 
         InstantiateGrid();
-    }
 
-
-    private void GenerateSeed()
-    {
-        if (SEED != 0)
-        {
-            rand = new System.Random(SEED);
-            //Debug.Log(SEED);
-        }
-        else
-        {
-            System.Random tempRand = new System.Random();
-            SEED = tempRand.Next(int.MinValue, int.MaxValue);
-            rand = new System.Random(SEED);
-            //Debug.Log(SEED);
-        }
-
+        //string noiseMap = "";
+        //for (int y = 0; y < noise.GetLength(1); y++)
+        //{
+        //    for (int x = 0; x < noise.GetLength(0); x++)
+        //    {
+        //        noiseMap += $"[{System.Math.Round(noise[x, y], 4)}] ";
+        //    }
+        //    noiseMap += $"\n";
+        //}
+        //Debug.Log(noiseMap);
     }
 
     private void GenerateBaseGridData()
@@ -89,16 +93,16 @@ public class GridGenerator : MonoBehaviour
     {
         int cellCount = data.Width * GetLayerHeight(layerIndex);
 
-        int clusterCount = rand.Next(oreData.MinClusterCount,oreData.MaxClusterCount + 1);
+        int clusterCount = Seed.RandomINT(oreData.MinClusterCount,oreData.MaxClusterCount + 1);
 
         for (int i = 0; i < clusterCount; i++)
         {
-            int x = rand.Next(0, data.Width);
+            int x = Seed.RandomINT(0, data.Width);
 
             int minY = GetLayerStart(layerIndex);
             int maxY = GetLayerEnd(layerIndex);
 
-            int y = rand.Next(minY, maxY + 1);
+            int y = Seed.RandomINT(minY, maxY + 1);
 
             GenerateOreCluster(oreData, x, y);
         }
@@ -132,7 +136,7 @@ public class GridGenerator : MonoBehaviour
         Queue<(int x, int y)> queue = new();
         HashSet<(int x, int y)> visited = new();
 
-        int clusterSize = rand.Next(seedData.MinClusterSize, seedData.MaxClusterSize + 1);
+        int clusterSize = Seed.RandomINT(seedData.MinClusterSize, seedData.MaxClusterSize + 1);
 
         var seed = (startX, startY);
 
@@ -151,47 +155,6 @@ public class GridGenerator : MonoBehaviour
                 Grid[current.x, current.y] = seedData;
                 placed++;
             }
-
-            /*int dir = rand.Next(0, 8);
-
-            switch (dir)
-            {
-                case 0:
-                    TrySpread(current.x, current.y + 1, queue, visited);
-
-                    break;
-                case 1:
-                    TrySpread(current.x, current.y - 1, queue, visited);
-
-                    break;
-                case 2:
-                    TrySpread(current.x + 1, current.y, queue, visited);
-
-                    break;
-                case 3:
-                    TrySpread(current.x - 1, current.y, queue, visited);
-
-                    break;
-                case 4:
-                    TrySpread(current.x + 1, current.y - 1, queue, visited);
-
-                    break;
-                case 5:
-                    TrySpread(current.x - 1, current.y + 1, queue, visited);
-
-                    break;
-                case 6:
-                    TrySpread(current.x + 1, current.y + 1, queue, visited);
-
-                    break;
-                case 7:
-                    TrySpread(current.x - 1, current.y - 1, queue, visited);
-
-                    break;
-
-                default:
-                    break;
-            }*/
 
             TrySpread(current.x, current.y + 1, queue, visited);
             TrySpread(current.x, current.y - 1, queue, visited);
@@ -264,7 +227,7 @@ public class GridGenerator : MonoBehaviour
 
                 Block prefab = GetPrefab(blockData);
 
-                float z = (float)rand.Next(-2, 3) / rand.Next(20, 30);
+                float z = (float)Seed.RandomINT(-2, 3) / Seed.RandomINT(20, 30);
 
                 Block block = Instantiate(prefab, new Vector3(origin.y - x, origin.x - y, z), Quaternion.identity, this.transform);
 
