@@ -476,7 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c8ecc92b7add6c428b83875dc3b7b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridDebugger
-  SEED: 1
+  SEED: 0
   data: {fileID: 11400000, guid: 3b57594cba5caaf45be4ac3ef1f26209, type: 2}
   blocks:
   - {fileID: 11400000, guid: d758169dfddfc4d48b96e68c53761812, type: 2}

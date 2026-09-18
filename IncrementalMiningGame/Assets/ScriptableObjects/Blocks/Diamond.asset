@@ -22,3 +22,5 @@ MonoBehaviour:
   MaxClusterSize: 6
   MinClusterCount: 5
   MaxClusterCount: 12
+  MinNoiseValue: 0
+  MaxNoiseValue: 0

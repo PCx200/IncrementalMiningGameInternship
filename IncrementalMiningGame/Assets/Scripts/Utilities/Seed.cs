@@ -26,9 +26,6 @@ public static class Seed
 
     public static float RandomFLOAT(int a, int b)
     {
-        float whole = rand.Next(a, b);
-        float small = (float)(rand.Next(a * 100, b * 100)) / 1000.0f;
-
-        return whole + small;  
+        return (float)(rand.NextDouble() * (b - a) + a);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public class TilemapManager : MonoBehaviour
@@ -21,6 +22,24 @@ public class TilemapManager : MonoBehaviour
 
     private void Start()
     {
+        Initialize();
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
+            SEED = 0;
+            Initialize();
+        }
+    }
+
+    private void Initialize()
+    {
         if (SEED == 0)
         {
             SEED = Seed.GenerateSeed();
@@ -36,16 +55,18 @@ public class TilemapManager : MonoBehaviour
         blockDataTilemap.GenerateBaseGridData();
 
 
-        OreGenerator oreGenerator = new OreGenerator(data, layers, tilemapGenerator.Tilemap);
-        oreGenerator.GenerateOres();
+        //ClusterOreGenerator clusterOreGenerator = new ClusterOreGenerator(data, layers, tilemapGenerator.Tilemap);
+        //clusterOreGenerator.GenerateOres();
+
+        PerlinOreGenerator perlinOreGenerator = new PerlinOreGenerator(data, layers, tilemapGenerator.Tilemap);
+        perlinOreGenerator.GenerateOres();
+
+        //NoiseGenerator noiseGenerator = new NoiseGenerator(noiseMap);
+
+        //noiseMap = noiseGenerator.GeneratePerlinNoiseMap(data.Width, data.Depth, 0.01f, 3, 0.5f, 2.0f);
 
         InstantiateGrid();
-
-        //NoiseGenerator noise = new NoiseGenerator(noiseMap);
-
-        //noise.GeneratePerlinNoise(data.Width, data.Depth, 0.001f, 3, 0.5f, 3.0f);
     }
-
     private void InstantiateGrid()
     {
         int width = data.Width;
@@ -62,6 +83,8 @@ public class TilemapManager : MonoBehaviour
                 Block prefab = blockData.Prefab;
 
                 float z = (float)Seed.RandomINT(-2, 3) / Seed.RandomINT(20, 30);
+
+                //float zz = noiseMap[x, y];
 
                 Block block = Instantiate(prefab, new Vector3(origin.y - x, origin.x - y, z), Quaternion.identity, this.transform);
 

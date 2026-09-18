@@ -1,20 +1,13 @@
 using System.Collections.Generic;
+using UnityEngine;
 
-public class OreGenerator
+public class ClusterOreGenerator : OreGenerator
 {
-    private readonly GridData data;
-    private readonly List<LayerData> layers;
-    private readonly BlockData[,] grid;
-
-
-    public OreGenerator(GridData data, List<LayerData> layers, BlockData[,] grid)
+    public ClusterOreGenerator(GridData data, List<LayerData> layers, BlockData[,] grid) : base(data, layers, grid)
     {
-        this.data = data;
-        this.layers = layers;
-        this.grid = grid;
     }
 
-    public void GenerateOres()
+    public override void GenerateOres()
     {
         for (int layerIndex = 0; layerIndex < layers.Count; layerIndex++)
         {
@@ -24,14 +17,13 @@ public class OreGenerator
             {
                 Block ore = ores[i];
 
-                GenerateOreClusters(ore.Data,layerIndex);
+                GenerateOreClusters(ore.Data, layerIndex);
             }
         }
     }
+
     private void GenerateOreClusters(BlockData oreData, int layerIndex)
     {
-        int cellCount = data.Width * GetLayerHeight(layerIndex);
-
         int clusterCount = Seed.RandomINT(oreData.MinClusterCount, oreData.MaxClusterCount + 1);
 
         for (int i = 0; i < clusterCount; i++)
@@ -74,12 +66,12 @@ public class OreGenerator
 
     private void SpreadOre(BlockData seedData, int startX, int startY)
     {
-        Queue<(int x, int y)> queue = new();
-        HashSet<(int x, int y)> visited = new();
+        Queue<Vector2Int> queue = new();
+        HashSet<Vector2Int> visited = new();
 
         int clusterSize = Seed.RandomINT(seedData.MinClusterSize, seedData.MaxClusterSize + 1);
 
-        var seed = (startX, startY);
+        var seed = new Vector2Int(startX, startY);
 
         visited.Add(seed);
 
@@ -108,14 +100,14 @@ public class OreGenerator
         }
     }
 
-    private void TrySpread(int x, int y, Queue<(int x, int y)> queue, HashSet<(int x, int y)> visited)
+    private void TrySpread(int x, int y, Queue<Vector2Int> queue, HashSet<Vector2Int> visited)
     {
         if (x < 0 || x >= grid.GetLength(0) || y < 0 || y >= grid.GetLength(1))
         {
             return;
         }
 
-        if (!visited.Add((x, y)))
+        if (!visited.Add(new Vector2Int(x, y)))
         {
             return;
         }
@@ -131,25 +123,6 @@ public class OreGenerator
         }
 
 
-        queue.Enqueue((x, y));
+        queue.Enqueue(new Vector2Int(x, y));
     }
-
-
-    #region Layer Helpers
-    private int GetLayerStart(int layerIndex)
-    {
-        if (layerIndex == 0)
-            return 0;
-
-        return data.LayersDepth[layerIndex - 1] + 1;
-    }
-    private int GetLayerEnd(int layerIndex)
-    {
-        return data.LayersDepth[layerIndex];
-    }
-    private int GetLayerHeight(int layerIndex)
-    {
-        return GetLayerEnd(layerIndex) - GetLayerStart(layerIndex) + 1;
-    }
-    #endregion
 }

@@ -18,7 +18,9 @@ MonoBehaviour:
   Weight: 1
   GenerationType: 2
   SpawnRate: 0.05
-  MinClusterSize: 3
-  MaxClusterSize: 6
-  MinClusterCount: 3
-  MaxClusterCount: 8
+  MinClusterSize: 2
+  MaxClusterSize: 7
+  MinClusterCount: 6
+  MaxClusterCount: 10
+  MinNoiseValue: 0
+  MaxNoiseValue: 0

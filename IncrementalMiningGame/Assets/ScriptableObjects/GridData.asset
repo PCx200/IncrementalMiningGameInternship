@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c58684f5ef197243aa685f0fbf3f12a, type: 3}
   m_Name: GridData
   m_EditorClassIdentifier: Assembly-CSharp::GridData
-  Width: 5
+  Width: 7
   Depth: 500
-  BaseBlock: {fileID: 11400000, guid: d758169dfddfc4d48b96e68c53761812, type: 2}
   LayersDepth: 140000005a0000009100000018010000f4010000

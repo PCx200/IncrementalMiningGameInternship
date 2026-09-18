@@ -19,6 +19,8 @@ MonoBehaviour:
   GenerationType: 2
   SpawnRate: 0.03
   MinClusterSize: 3
-  MaxClusterSize: 6
+  MaxClusterSize: 5
   MinClusterCount: 5
-  MaxClusterCount: 12
+  MaxClusterCount: 7
+  MinNoiseValue: 0.147
+  MaxNoiseValue: 0.587
