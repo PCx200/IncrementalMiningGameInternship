@@ -26,12 +26,4 @@ public class BlockData : ScriptableObject
 
     public int MinClusterCount;
     public int MaxClusterCount;
-
-    [Header("Noise Based")]
-
-    [Range(0f, 1f), Tooltip("The minimal value and ore can spread, based on the noise value")] 
-    public float MinNoiseValue;
-
-    [Range(0f, 1f), Tooltip("The maximal value and ore can spread, based on the noise value")] 
-    public float MaxNoiseValue;
 }

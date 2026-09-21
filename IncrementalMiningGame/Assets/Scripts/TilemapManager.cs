@@ -5,6 +5,13 @@ using UnityEngine.InputSystem;
 
 public class TilemapManager : MonoBehaviour
 {
+    enum SpawningOreStrategy
+    { 
+        BFS,
+        Perlin
+    }
+    [SerializeField] SpawningOreStrategy spawningOreStrategy;
+
     [SerializeField] private int SEED;
 
     [SerializeField] private GridData data;
@@ -17,8 +24,6 @@ public class TilemapManager : MonoBehaviour
     private BlockDataTilemap blockDataTilemap;
 
     [SerializeField] private List<LayerData> layers = new();
-
-    //float[,] noiseMap;
 
     private void Start()
     {
@@ -54,16 +59,19 @@ public class TilemapManager : MonoBehaviour
         blockDataTilemap = new BlockDataTilemap(data, tilemapGenerator, layers);
         blockDataTilemap.GenerateBaseGridData();
 
-
-        //ClusterOreGenerator clusterOreGenerator = new ClusterOreGenerator(data, layers, tilemapGenerator.Tilemap);
-        //clusterOreGenerator.GenerateOres();
-
-        PerlinOreGenerator perlinOreGenerator = new PerlinOreGenerator(data, layers, tilemapGenerator.Tilemap);
-        perlinOreGenerator.GenerateOres();
-
-        //NoiseGenerator noiseGenerator = new NoiseGenerator(noiseMap);
-
-        //noiseMap = noiseGenerator.GeneratePerlinNoiseMap(data.Width, data.Depth, 0.01f, 3, 0.5f, 2.0f);
+        switch (spawningOreStrategy)
+        {
+            case SpawningOreStrategy.BFS:
+                ClusterOreGenerator clusterOreGenerator = new ClusterOreGenerator(data, layers, tilemapGenerator.Tilemap);
+                clusterOreGenerator.GenerateOres();
+                break;
+            case SpawningOreStrategy.Perlin:
+                PerlinOreGenerator perlinOreGenerator = new PerlinOreGenerator(data, layers, tilemapGenerator.Tilemap);
+                perlinOreGenerator.GenerateOres();
+                break;
+            default:
+                break;
+        }
 
         InstantiateGrid();
     }
@@ -84,9 +92,7 @@ public class TilemapManager : MonoBehaviour
 
                 float z = (float)Seed.RandomINT(-2, 3) / Seed.RandomINT(20, 30);
 
-                //float zz = noiseMap[x, y];
-
-                Block block = Instantiate(prefab, new Vector3(origin.y - x, origin.x - y, z), Quaternion.identity, this.transform);
+                Block block = Instantiate(prefab, new Vector3(origin.y - x, origin.x - y, z / 2), Quaternion.identity, this.transform);
 
                 block.name = $"{prefab.name} [{x},{y}]";
             }

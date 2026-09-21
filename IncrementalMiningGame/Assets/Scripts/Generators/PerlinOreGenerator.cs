@@ -52,13 +52,8 @@ public class PerlinOreGenerator : OreGenerator
         // Preventing generating clusters on top of eachother
         int minDistance = Mathf.Max(2, Mathf.RoundToInt(Mathf.Sqrt(oreData.MaxClusterSize)));
 
-        int attempts = 0;
-        int maxAttempts = clusterCount * 20;
-
-        while (seeds.Count < clusterCount && attempts < maxAttempts)
+        while (seeds.Count < clusterCount)
         {
-            attempts++;
-
             int x = Seed.RandomINT(0, grid.GetLength(0));
             int y = Seed.RandomINT(minY, maxY + 1);
 
@@ -126,16 +121,13 @@ public class PerlinOreGenerator : OreGenerator
             grid[current.x, current.y] = oreData;
             placed++;
 
-            List<Vector2Int> neighbours =
-                GetNeighbours(current.x, current.y);
+            List<Vector2Int> neighbours = GetNeighbours(current.x, current.y);
 
             neighbours.Sort((a, b) =>
             {
-                float aDifference = Mathf.Abs(
-                    noiseMap[a.x, a.y] - seedNoiseValue);
+                float aDifference = Mathf.Abs(noiseMap[a.x, a.y] - seedNoiseValue);
 
-                float bDifference = Mathf.Abs(
-                    noiseMap[b.x, b.y] - seedNoiseValue);
+                float bDifference = Mathf.Abs(noiseMap[b.x, b.y] - seedNoiseValue);
 
                 return aDifference.CompareTo(bDifference);
             });
@@ -147,9 +139,7 @@ public class PerlinOreGenerator : OreGenerator
                     continue;
                 }
 
-                if (!CanPlaceOre(
-                        neighbour.x,
-                        neighbour.y))
+                if (!CanPlaceOre(neighbour.x, neighbour.y))
                 {
                     continue;
                 }
