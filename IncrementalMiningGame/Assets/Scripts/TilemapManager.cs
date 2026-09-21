@@ -10,20 +10,26 @@ public class TilemapManager : MonoBehaviour
         BFS,
         Perlin
     }
-    [SerializeField] SpawningOreStrategy spawningOreStrategy;
 
-    [SerializeField] private int SEED;
+    [SerializeField]
+    private SpawningOreStrategy spawningOreStrategy;
 
-    [SerializeField] private GridData data;
+    [SerializeField]
+    private int SEED;
+
+    [SerializeField]
+    private GridData data;
     public GridData Data => data;
 
-    [SerializeField] List<BlockData> blocks;
+    [SerializeField]
+    private List<BlockData> blocks;
 
     private TilemapGenerator<BlockData> tilemapGenerator;
 
     private BlockDataTilemap blockDataTilemap;
 
-    [SerializeField] private List<LayerData> layers = new();
+    [SerializeField] 
+    private List<LayerData> layers = new();
 
     private void Start()
     {
@@ -38,7 +44,9 @@ public class TilemapManager : MonoBehaviour
             {
                 Destroy(child.gameObject);
             }
+
             SEED = 0;
+
             Initialize();
         }
     }
@@ -75,6 +83,7 @@ public class TilemapManager : MonoBehaviour
 
         InstantiateGrid();
     }
+
     private void InstantiateGrid()
     {
         int width = data.Width;
@@ -90,9 +99,12 @@ public class TilemapManager : MonoBehaviour
 
                 Block prefab = blockData.Prefab;
 
-                float z = (float)Seed.RandomINT(-2, 3) / Seed.RandomINT(20, 30);
+                //minimum and maximum Z-span
+                float minZ = 0f;
+                float maxZ = 0.2f;
+                float z = Seed.RandomFLOAT(minZ, maxZ);
 
-                Block block = Instantiate(prefab, new Vector3(origin.y - x, origin.x - y, z / 2), Quaternion.identity, this.transform);
+                Block block = Instantiate(prefab, new Vector3(origin.y - x, origin.x - y, z), Quaternion.identity, this.transform);
 
                 block.name = $"{prefab.name} [{x},{y}]";
             }

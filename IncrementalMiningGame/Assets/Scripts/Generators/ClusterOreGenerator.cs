@@ -47,7 +47,6 @@ public class ClusterOreGenerator : OreGenerator
         {
             SpreadOre(oreSeedData, startX, startY);
         }
-
     }
 
     private BlockData TryPlaceOreSeed(BlockData oreData, int x, int y)
@@ -93,10 +92,6 @@ public class ClusterOreGenerator : OreGenerator
             TrySpread(current.x, current.y - 1, queue, visited);
             TrySpread(current.x + 1, current.y, queue, visited);
             TrySpread(current.x - 1, current.y, queue, visited);
-            //TrySpread(current.x + 1, current.y - 1, queue, visited);
-            //TrySpread(current.x - 1, current.y + 1, queue, visited);
-            //TrySpread(current.x + 1, current.y + 1, queue, visited);
-            //TrySpread(current.x - 1, current.y - 1, queue, visited);
         }
     }
 
@@ -121,7 +116,6 @@ public class ClusterOreGenerator : OreGenerator
         {
             return;
         }
-
 
         queue.Enqueue(new Vector2Int(x, y));
     }

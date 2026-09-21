@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
+
 public enum BlockGenerationType
 {
     Base,
@@ -19,7 +19,8 @@ public class BlockData : ScriptableObject
     [Header("Generation")]
     public BlockGenerationType GenerationType;
 
-    [Range(0,1f)] public float SpawnRate;
+    [Range(0,1f)] 
+    public float SpawnRate;
 
     public int MinClusterSize;
     public int MaxClusterSize;

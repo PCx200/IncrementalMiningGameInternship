@@ -4,7 +4,7 @@ using UnityEngine;
 public class PerlinOreGenerator : OreGenerator
 {
     private float[,] noiseMap;
-    NoiseGenerator noiseGenerator;
+    private NoiseGenerator noiseGenerator;
 
     public PerlinOreGenerator(GridData data, List<LayerData> layers, BlockData[,] grid) : base(data, layers, grid)
     {
@@ -13,7 +13,12 @@ public class PerlinOreGenerator : OreGenerator
 
     public override void GenerateOres()
     {
-        noiseMap = noiseGenerator.GeneratePerlinNoiseMap(data.Width, data.Depth, 0.01f, 3, 0.5f, 2.0f);
+        float scale = 0.01f;
+        int octaves = 3;
+        float persistence = 0.5f;
+        float lacunarity = 2.0f;
+
+        noiseMap = noiseGenerator.GeneratePerlinNoiseMap(data.Width, data.Depth, scale, octaves, persistence, lacunarity);
 
         for (int layerIndex = 0; layerIndex < layers.Count; layerIndex++)
         {

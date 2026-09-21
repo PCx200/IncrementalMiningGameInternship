@@ -23,10 +23,13 @@ public abstract class OreGenerator
     protected int GetLayerStart(int layerIndex)
     {
         if (layerIndex == 0)
+        { 
             return 0;
+        }
 
         return data.LayersDepth[layerIndex - 1] + 1;
     }
+
     protected int GetLayerEnd(int layerIndex)
     {
         return data.LayersDepth[layerIndex] - 1;

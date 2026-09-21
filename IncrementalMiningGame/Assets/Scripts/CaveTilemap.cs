@@ -6,7 +6,8 @@ public class BlockDataTilemap
     private GridData data;
     private TilemapGenerator<BlockData> tilemapGenerator;
 
-    [SerializeField] private List<LayerData> layers = new();
+    [SerializeField] 
+    private List<LayerData> layers = new();
 
 
     public BlockDataTilemap(GridData data, TilemapGenerator<BlockData> tilemapGenerator, List<LayerData> layers)

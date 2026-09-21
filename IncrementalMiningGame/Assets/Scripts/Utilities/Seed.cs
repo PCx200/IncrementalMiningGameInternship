@@ -2,30 +2,31 @@ using System;
 
 public static class Seed
 {
-    private static Random rand;
+    private static Random random;
 
-    public static int SEED;
+    private static int SEED;
 
     public static int GenerateSeed()
     {
-        Random tempRand = new Random();
-        SEED = tempRand.Next(int.MinValue, int.MaxValue);
-        rand = new Random(SEED);
+        Random tempRandom = new Random();
+        SEED = tempRandom.Next(int.MinValue, int.MaxValue);
+        random = new Random(SEED);
 
         return SEED;
     }
 
     public static void PickSeed(int seed)
     {
-        rand = new Random(seed);
-    }
-    public static int RandomINT(int a, int b)
-    {
-        return rand.Next(a, b);
+        random = new Random(seed);
     }
 
-    public static float RandomFLOAT(int a, int b)
+    public static int RandomINT(int min, int max)
     {
-        return (float)(rand.NextDouble() * (b - a) + a);
+        return random.Next(min, max);
+    }
+
+    public static float RandomFLOAT(float min, float max)
+    {
+        return (float)(random.NextDouble() * (max - min) + min);
     }
 }
