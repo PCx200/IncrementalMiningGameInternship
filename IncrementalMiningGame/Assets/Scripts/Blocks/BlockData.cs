@@ -19,9 +19,6 @@ public class BlockData : ScriptableObject
     [Header("Generation")]
     public BlockGenerationType GenerationType;
 
-    [Range(0,1f)] 
-    public float SpawnRate;
-
     public int MinClusterSize;
     public int MaxClusterSize;
 
