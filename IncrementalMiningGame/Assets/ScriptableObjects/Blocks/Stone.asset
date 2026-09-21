@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74b50c65c447344080ffbcb6d8ab333, type: 3}
+  m_Name: Stone
+  m_EditorClassIdentifier: Assembly-CSharp::BlockData
+  Prefab: {fileID: 1754502099439603099, guid: 711be4e34f74c924881b14de9ec52646, type: 3}
+  Health: 10
+  Value: 2
+  Weight: 1
+  GenerationType: 0
+  SpawnRate: 1
+  MinClusterSize: 0
+  MaxClusterSize: 0
+  MinClusterCount: 0
+  MaxClusterCount: 0

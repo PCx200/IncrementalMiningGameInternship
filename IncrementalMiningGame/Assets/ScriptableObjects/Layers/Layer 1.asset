@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea01e56350c435458de49ea7bd6b39d, type: 3}
+  m_Name: Layer 1
+  m_EditorClassIdentifier: Assembly-CSharp::LayerData
+  BaseBlock: {fileID: 1754502099439603099, guid: 711be4e34f74c924881b14de9ec52646, type: 3}
+  StoneVariants: []
+  Ores:
+  - {fileID: 1837569671967742127, guid: 8ce7875332560d945aec59c6053ac599, type: 3}
+  - {fileID: 3592216472672392586, guid: 467216273fd2a1d4391ecde204b3becb, type: 3}
