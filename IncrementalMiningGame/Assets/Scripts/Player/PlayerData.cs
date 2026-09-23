@@ -9,7 +9,7 @@ public class PlayerData : ScriptableObject
 
     public float CarryingStrength;
 
-    public DrillData drillData;
+    public DrillData DrillData;
 
     //Add Inventory property later;
 }

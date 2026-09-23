@@ -21,8 +21,8 @@ public class GodMode : MonoBehaviour
     private void Start()
     {
 
-        defaultDamage = playerData.drillData.AttackDamage;
-        defaultAS = playerData.drillData.AttackSpeed;
+        defaultDamage = playerData.DrillData.AttackDamage;
+        defaultAS = playerData.DrillData.AttackSpeed;
     }
 
     private void Update()
@@ -37,8 +37,8 @@ public class GodMode : MonoBehaviour
 
     private void OnDisable()
     {
-        playerData.drillData.AttackDamage = defaultDamage;
-        playerData.drillData.AttackSpeed = defaultAS;
+        playerData.DrillData.AttackDamage = defaultDamage;
+        playerData.DrillData.AttackSpeed = defaultAS;
     }
 
     private void EnableGodMode()
@@ -50,14 +50,14 @@ public class GodMode : MonoBehaviour
 
         if (isON)
         {
-            playerData.drillData.AttackDamage = 1000;
-            playerData.drillData.AttackSpeed = 0.01f;
+            playerData.DrillData.AttackDamage = 1000;
+            playerData.DrillData.AttackSpeed = 0.01f;
         }
 
         else
         {
-            playerData.drillData.AttackDamage = defaultDamage;
-            playerData.drillData.AttackSpeed = defaultAS;
+            playerData.DrillData.AttackDamage = defaultDamage;
+            playerData.DrillData.AttackSpeed = defaultAS;
         }
     }
 

@@ -10,11 +10,14 @@ public enum BlockGenerationType
 [CreateAssetMenu(fileName = "BlockData", menuName = "Scriptable Objects/BlockData")]
 public class BlockData : ScriptableObject
 {
+    [Header("Stats")]
     public Block Prefab;
 
     public float Health;
     public int Value;
     public float Weight;
+
+    public float FuelConsumption;
 
     [Header("Generation")]
     public BlockGenerationType GenerationType;
@@ -25,5 +28,7 @@ public class BlockData : ScriptableObject
     public int MinClusterCount;
     public int MaxClusterCount;
 
+    [Header("Event Channels")]
     public BlockDestroyChannel BlockDestroyChannel;
+    public BlockDamagedChannel BlockDamagedChannel;
 }

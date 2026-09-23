@@ -19,7 +19,7 @@ public class PlayerSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        Vector3 gridCenter = new Vector3(gridData.Width / 2, player.transform.localScale.x * 2f, 0);
+        Vector3 gridCenter = new Vector3(Mathf.Floor(gridData.Width / 2.0f), player.transform.localScale.x * 2.0f, 0.0f);
 
         Instantiate(player, gridCenter, Quaternion.identity);
     }

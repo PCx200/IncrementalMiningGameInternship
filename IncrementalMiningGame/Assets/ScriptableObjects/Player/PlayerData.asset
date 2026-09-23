@@ -15,4 +15,4 @@ MonoBehaviour:
   Health: 0
   MovementSpeed: 10
   CarryingStrength: 0
-  drillData: {fileID: 11400000, guid: 73cb772e9c6ffdb4db3b70e78f367314, type: 2}
+  DrillData: {fileID: 11400000, guid: 73cb772e9c6ffdb4db3b70e78f367314, type: 2}

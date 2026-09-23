@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
     private Rigidbody rb;
 
     private InputManager inputManager;
@@ -23,11 +24,6 @@ public class PlayerController : MonoBehaviour
         inputManager = InputManager.Instance;
     }
 
-    private void OnDisable()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         Move();
@@ -36,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         elapsedTime += Time.deltaTime;
-        if (elapsedTime >= data.drillData.AttackSpeed)
+        if (elapsedTime >= data.DrillData.AttackSpeed)
         {
             Mine();
         }
@@ -48,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 movementDirection = movementInput * data.MovementSpeed;
 
-        rb.AddForce(movementDirection);
+        rb.AddForce(movementDirection, ForceMode.Force);
     }
 
     private void Mine()
@@ -70,12 +66,12 @@ public class PlayerController : MonoBehaviour
         }
 
         //Checks if the block is out of range
-        if (System.Math.Round(Vector2.Distance(transform.position, block.transform.position), System.MidpointRounding.ToEven) > data.drillData.ReachDistance)
+        if (System.Math.Round(Vector2.Distance(transform.position, block.transform.position), System.MidpointRounding.ToEven) > data.DrillData.ReachDistance)
         {
             return;
         }
 
-        block.TakeDamage(data.drillData.AttackDamage);
+        block.TakeDamage(data.DrillData.AttackDamage);
         elapsedTime = 0.0f;
     }
 }

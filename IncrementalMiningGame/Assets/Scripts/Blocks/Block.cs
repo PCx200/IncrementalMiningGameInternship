@@ -9,7 +9,7 @@ public class Block : MonoBehaviour, IDamageable
     private float currentHealth;
     private int currentValue;
 
-    public event Action OnDamaged;
+    private BlockDamagedChannel blockDamagedChannel;
 
     private void Awake()
     {
@@ -21,9 +21,7 @@ public class Block : MonoBehaviour, IDamageable
     {
         currentHealth -= flatDamage;
 
-        OnDamaged?.Invoke();
-
-        Debug.Log($"{this.name} health left: {currentHealth}");
+        data.BlockDamagedChannel?.Raise(data.FuelConsumption);
 
         if (currentHealth <= 0.0f)
         {
