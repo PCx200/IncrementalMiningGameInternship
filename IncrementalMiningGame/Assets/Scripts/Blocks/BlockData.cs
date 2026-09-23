@@ -24,4 +24,6 @@ public class BlockData : ScriptableObject
 
     public int MinClusterCount;
     public int MaxClusterCount;
+
+    public BlockDestroyChannel BlockDestroyChannel;
 }

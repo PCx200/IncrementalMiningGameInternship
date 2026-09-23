@@ -4,14 +4,12 @@ using UnityEngine;
 public class Block : MonoBehaviour, IDamageable
 {
     [SerializeField] private BlockData data;
-
     public BlockData Data => data;
 
     private float currentHealth;
     private int currentValue;
 
     public event Action OnDamaged;
-    public event Action OnDestroyed;
 
     private void Awake()
     {
@@ -29,7 +27,7 @@ public class Block : MonoBehaviour, IDamageable
 
         if (currentHealth <= 0.0f)
         {
-            OnDestroyed?.Invoke();
+            data.BlockDestroyChannel?.Raise(data);
             Destroy(gameObject);
         }
     }

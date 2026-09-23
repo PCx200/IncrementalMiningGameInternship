@@ -17,8 +17,8 @@ MonoBehaviour:
   Value: 4
   Weight: 1
   GenerationType: 2
-  SpawnRate: 0.1
   MinClusterSize: 1
   MaxClusterSize: 6
   MinClusterCount: 5
   MaxClusterCount: 6
+  BlockDestroyChannel: {fileID: 11400000, guid: 1b74e800cc28d21489f0dfa3749c4ec2, type: 2}
