@@ -17,7 +17,9 @@ public class BlockData : ScriptableObject
     public int Value;
     public float Weight;
 
+    [Header("Fuel-related")]
     public float FuelConsumption;
+    public float FuelPenalty;
 
     [Header("Generation")]
     public BlockGenerationType GenerationType;
@@ -31,4 +33,5 @@ public class BlockData : ScriptableObject
     [Header("Event Channels")]
     public BlockDestroyChannel BlockDestroyChannel;
     public BlockDamagedChannel BlockDamagedChannel;
+    public BlockDamagedChannel BlockDamagedPenaltyChannel;
 }

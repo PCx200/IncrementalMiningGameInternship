@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class Block : MonoBehaviour, IDamageable
 {
-    [SerializeField] private BlockData data;
+    [SerializeField] 
+    private BlockData data;
     public BlockData Data => data;
 
     private float currentHealth;
     private int currentValue;
-
-    private BlockDamagedChannel blockDamagedChannel;
 
     private void Awake()
     {
@@ -22,6 +21,11 @@ public class Block : MonoBehaviour, IDamageable
         currentHealth -= flatDamage;
 
         data.BlockDamagedChannel?.Raise(data.FuelConsumption);
+
+        if (data.Health / 4 > flatDamage)
+        {
+            data.BlockDamagedPenaltyChannel?.Raise(data.FuelPenalty);
+        }
 
         if (currentHealth <= 0.0f)
         {

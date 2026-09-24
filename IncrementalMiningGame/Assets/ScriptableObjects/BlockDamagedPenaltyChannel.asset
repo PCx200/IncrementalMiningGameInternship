@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bae13d58e6de544d9c06f959b012d80, type: 3}
-  m_Name: DrillData
-  m_EditorClassIdentifier: Assembly-CSharp::DrillData
-  AttackDamage: 3
-  AttackSpeed: 1
-  ReachDistance: 1
-  FuelTankCapacity: 40
-  FuelConsumptionPerSecond: 1
+  m_Script: {fileID: 11500000, guid: 6afe2a35fa3fdde4ab5e62a3b0cbca72, type: 3}
+  m_Name: BlockDamagedPenaltyChannel
+  m_EditorClassIdentifier: Assembly-CSharp::BlockDamagedChannel

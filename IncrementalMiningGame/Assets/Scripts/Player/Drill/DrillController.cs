@@ -16,6 +16,9 @@ public class DrillController : MonoBehaviour
     [SerializeField]
     private BlockDamagedChannel blockDamagedChannel;
 
+    [SerializeField]
+    private BlockDamagedChannel blockDamagedPenaltyChannel;
+
     private void Start()
     {
         currentFuel = data.FuelTankCapacity;
@@ -29,28 +32,31 @@ public class DrillController : MonoBehaviour
     private void OnEnable()
     {
         blockDamagedChannel.Raised += DrainFuelAfterMining;
+        blockDamagedPenaltyChannel.Raised += DrainFuelAfterMining;
     }
 
     private void OnDisable()
     {
         blockDamagedChannel.Raised -= DrainFuelAfterMining;
+        blockDamagedPenaltyChannel.Raised -= DrainFuelAfterMining;
     }
 
     private void DrainFuel()
     {
         currentFuel -= data.FuelConsumptionPerSecond * Time.deltaTime;
 
-        if (currentFuel <= 0f)
-        {
-            currentFuel = 0f;
-            OnTankEmpty?.Invoke();
-        }
+        CheckTankEmpty();
     }
 
     private void DrainFuelAfterMining(float amount)
     {
         currentFuel -= amount;
 
+        CheckTankEmpty();
+    }
+
+    private void CheckTankEmpty()
+    {
         if (currentFuel <= 0f)
         {
             currentFuel = 0f;

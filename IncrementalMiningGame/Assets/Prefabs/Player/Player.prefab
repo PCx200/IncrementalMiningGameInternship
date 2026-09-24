@@ -47,6 +47,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 73cb772e9c6ffdb4db3b70e78f367314, type: 2}
   currentFuel: 0
   blockDamagedChannel: {fileID: 11400000, guid: 14a625cfe721d9f4695f8b0b2b3d1f30, type: 2}
+  blockDamagedPenaltyChannel: {fileID: 11400000, guid: 8639f19afa3552b409a1268855205502, type: 2}
 --- !u!1 &4687371479785578263
 GameObject:
   m_ObjectHideFlags: 0

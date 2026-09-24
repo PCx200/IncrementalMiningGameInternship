@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         elapsedTime += Time.deltaTime;
+
         if (elapsedTime >= data.DrillData.AttackSpeed)
         {
             Mine();

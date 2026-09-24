@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     #region Input Actions
     private InputAction moveAction;
     public InputAction MoveAction => moveAction;
+
     private InputAction attackAction;
     public InputAction AttackAction => attackAction;
 

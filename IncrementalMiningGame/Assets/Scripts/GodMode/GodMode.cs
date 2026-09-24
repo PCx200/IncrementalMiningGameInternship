@@ -20,7 +20,6 @@ public class GodMode : MonoBehaviour
 
     private void Start()
     {
-
         defaultDamage = playerData.DrillData.AttackDamage;
         defaultAS = playerData.DrillData.AttackSpeed;
     }
@@ -53,7 +52,6 @@ public class GodMode : MonoBehaviour
             playerData.DrillData.AttackDamage = 1000;
             playerData.DrillData.AttackSpeed = 0.01f;
         }
-
         else
         {
             playerData.DrillData.AttackDamage = defaultDamage;

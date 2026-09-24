@@ -7,9 +7,9 @@ public class DrillData : ScriptableObject
 
     public float AttackSpeed;
 
+    public float ReachDistance;
+
     public float FuelTankCapacity;
 
     public float FuelConsumptionPerSecond;
-
-    public float ReachDistance;
 }
