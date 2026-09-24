@@ -104,7 +104,7 @@ public class TilemapManager : MonoBehaviour
                 float maxZ = 0.2f;
                 float z = Seed.RandomFLOAT(minZ, maxZ);
 
-                Block block = Instantiate(prefab, new Vector3(origin.y - x, origin.x - y, z), Quaternion.identity, this.transform);
+                Block block = Instantiate(prefab, new Vector3(origin.y + x, origin.x - y, z), Quaternion.identity, this.transform);
 
                 block.name = $"{prefab.name} [{x},{y}]";
             }

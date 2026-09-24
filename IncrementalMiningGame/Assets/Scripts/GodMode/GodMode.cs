@@ -1,0 +1,69 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class GodMode : MonoBehaviour
+{
+    [SerializeField]
+    private PlayerData playerData;
+
+    [SerializeField]
+    private Inventory inventory;
+
+    [SerializeField]
+    private float defaultDamage;
+
+    [SerializeField]
+    private float defaultAS;
+
+    [SerializeField]
+    private bool isON;
+
+    private void Start()
+    {
+        defaultDamage = playerData.DrillData.AttackDamage;
+        defaultAS = playerData.DrillData.AttackSpeed;
+    }
+
+    private void Update()
+    {
+        EnableGodMode();
+
+        if (Keyboard.current.iKey.wasPressedThisFrame)
+        {
+            ShowCollectedBlocks();
+        }
+    }
+
+    private void OnDisable()
+    {
+        playerData.DrillData.AttackDamage = defaultDamage;
+        playerData.DrillData.AttackSpeed = defaultAS;
+    }
+
+    private void EnableGodMode()
+    {
+        if (Keyboard.current.gKey.wasPressedThisFrame)
+        {
+            isON = !isON;
+        }
+
+        if (isON)
+        {
+            playerData.DrillData.AttackDamage = 1000;
+            playerData.DrillData.AttackSpeed = 0.01f;
+        }
+        else
+        {
+            playerData.DrillData.AttackDamage = defaultDamage;
+            playerData.DrillData.AttackSpeed = defaultAS;
+        }
+    }
+
+    private void ShowCollectedBlocks()
+    {
+        foreach (var block in inventory.GetBlocks())
+        {
+            Debug.Log($"{block.Key.name} x{block.Value}");
+        }
+    }
+}

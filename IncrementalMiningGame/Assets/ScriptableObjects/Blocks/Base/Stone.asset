@@ -16,9 +16,13 @@ MonoBehaviour:
   Health: 10
   Value: 2
   Weight: 1
+  FuelConsumption: 1
+  FuelPenalty: 0
   GenerationType: 0
-  SpawnRate: 1
   MinClusterSize: 0
   MaxClusterSize: 0
   MinClusterCount: 0
   MaxClusterCount: 0
+  BlockDestroyChannel: {fileID: 11400000, guid: 1b74e800cc28d21489f0dfa3749c4ec2, type: 2}
+  BlockDamagedChannel: {fileID: 11400000, guid: 14a625cfe721d9f4695f8b0b2b3d1f30, type: 2}
+  BlockDamagedPenaltyChannel: {fileID: 11400000, guid: 8639f19afa3552b409a1268855205502, type: 2}

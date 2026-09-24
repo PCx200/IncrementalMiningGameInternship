@@ -7,5 +7,4 @@ public class GridData : ScriptableObject
     public int Width;
     public int Depth;
     public List<int> LayersDepth;
-
 }
