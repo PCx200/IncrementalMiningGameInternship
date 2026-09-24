@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         if (elapsedTime >= data.DrillData.AttackSpeed)
         {
             Mine();
+            elapsedTime = 0.0f;
         }
     }
 
@@ -73,6 +74,5 @@ public class PlayerController : MonoBehaviour
         }
 
         block.TakeDamage(data.DrillData.AttackDamage);
-        elapsedTime = 0.0f;
     }
 }

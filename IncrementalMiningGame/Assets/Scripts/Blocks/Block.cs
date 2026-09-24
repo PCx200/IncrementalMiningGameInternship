@@ -16,13 +16,15 @@ public class Block : MonoBehaviour, IDamageable
         currentValue = data.Value;
     }
 
-    public void TakeDamage(float flatDamage)
+    public void TakeDamage(float damage)
     {
-        currentHealth -= flatDamage;
+        currentHealth -= damage;
 
         data.BlockDamagedChannel?.Raise(data.FuelConsumption);
 
-        if (data.Health / 4 > flatDamage)
+        float hitsRequired = 4.0f;
+
+        if (data.Health / hitsRequired > damage)
         {
             data.BlockDamagedPenaltyChannel?.Raise(data.FuelPenalty);
         }

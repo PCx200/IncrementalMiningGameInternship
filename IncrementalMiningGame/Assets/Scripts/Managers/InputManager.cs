@@ -52,6 +52,7 @@ public class InputManager : MonoBehaviour
 
     private void OnDisable()
     {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
         inputActionAsset.Disable();
     }
 }

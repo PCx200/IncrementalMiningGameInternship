@@ -11,7 +11,7 @@ public class DrillController : MonoBehaviour
     private float currentFuel;
     public float CurrentFuel => currentFuel;
 
-    private event Action OnTankEmpty;
+    public event Action OnTankEmpty;
 
     [SerializeField]
     private BlockDamagedChannel blockDamagedChannel;
