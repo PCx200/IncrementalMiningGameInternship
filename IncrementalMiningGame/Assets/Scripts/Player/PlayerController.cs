@@ -1,3 +1,4 @@
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -67,8 +68,19 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        //Checks if the block is out of range
-        if (System.Math.Round(Vector2.Distance(transform.position, block.transform.position), System.MidpointRounding.ToEven) > data.DrillData.ReachDistance)
+        Vector2 playerCenterOnGrid = new Vector2(
+            Mathf.Round(transform.position.x),
+            Mathf.Ceil(transform.position.y) 
+        );
+
+        Vector2 blockPosition = block.transform.position;
+
+        float deltaX = Mathf.Abs(blockPosition.x - playerCenterOnGrid.x);
+        float deltaY = Mathf.Abs(blockPosition.y - playerCenterOnGrid.y);
+
+        float distance = Mathf.Max(deltaX,deltaY);
+
+        if (distance > data.DrillData.ReachDistance)
         {
             return;
         }

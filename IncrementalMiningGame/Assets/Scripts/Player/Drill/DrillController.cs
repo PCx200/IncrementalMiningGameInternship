@@ -22,6 +22,8 @@ public class DrillController : MonoBehaviour
     private void Start()
     {
         currentFuel = data.FuelTankCapacity;
+
+        RoundManager.Instance.RegisterDrill(this);
     }
 
     private void Update()

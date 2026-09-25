@@ -15,5 +15,5 @@ MonoBehaviour:
   AttackDamage: 3
   AttackSpeed: 1
   ReachDistance: 1
-  FuelTankCapacity: 40
+  FuelTankCapacity: 700
   FuelConsumptionPerSecond: 1
