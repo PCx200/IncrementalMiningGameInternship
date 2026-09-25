@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Coal
   m_EditorClassIdentifier: Assembly-CSharp::BlockData
   Prefab: {fileID: 1837569671967742127, guid: 8ce7875332560d945aec59c6053ac599, type: 3}
+  Sprite: {fileID: 11400000, guid: f6a69017c425a4147a3db02aa333b0be, type: 2}
   Health: 15
   Value: 4
   Weight: 1

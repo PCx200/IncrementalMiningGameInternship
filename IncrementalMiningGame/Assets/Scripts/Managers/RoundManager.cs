@@ -6,11 +6,10 @@ public class RoundManager : MonoBehaviour
 {
     public static RoundManager Instance;
 
-    [SerializeField]
     private DrillController drill;
 
     private PlayerController player;
-    [SerializeField]
+
     private Inventory inventory;
 
     public event Action OnRoundEnd;
@@ -36,22 +35,22 @@ public class RoundManager : MonoBehaviour
 
         if (drill != null)
         {
-            drill.OnTankEmpty -= RoundEnd;
+            drill.OnTankEmpty -= EndRound;
         }
 
         drill = newDrill;
-        drill.OnTankEmpty += RoundEnd;
+        drill.OnTankEmpty += EndRound;
     }
 
     private void OnDisable()
     {
         if (drill != null)
         {
-            drill.OnTankEmpty -= RoundEnd;
+            drill.OnTankEmpty -= EndRound;
         }
     }
 
-    private void RoundEnd()
+    private void EndRound()
     {
         if (hasRoundEnded)
         {
@@ -60,12 +59,12 @@ public class RoundManager : MonoBehaviour
 
         hasRoundEnded = true;
 
-        DisablePlayer();
+        DisableComponents();
 
         OnRoundEnd?.Invoke();
     }
 
-    private void DisablePlayer()
+    private void DisableComponents()
     {
         player = FindFirstObjectByType<PlayerController>();
         player.enabled = false;

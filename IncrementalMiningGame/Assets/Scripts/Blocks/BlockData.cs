@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public enum BlockGenerationType
@@ -10,9 +11,11 @@ public enum BlockGenerationType
 [CreateAssetMenu(fileName = "BlockData", menuName = "Scriptable Objects/BlockData")]
 public class BlockData : ScriptableObject
 {
-    [Header("Stats")]
+    [Header("Visualisation")]
     public Block Prefab;
+    public TMP_SpriteAsset Sprite;
 
+    [Header("Stats")]
     public float Health;
     public int Value;
     public float Weight;

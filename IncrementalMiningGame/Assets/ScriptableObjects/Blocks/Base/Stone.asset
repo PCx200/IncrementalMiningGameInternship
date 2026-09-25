@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: Assembly-CSharp::BlockData
   Prefab: {fileID: 1754502099439603099, guid: 711be4e34f74c924881b14de9ec52646, type: 3}
+  Sprite: {fileID: 11400000, guid: f6a69017c425a4147a3db02aa333b0be, type: 2}
   Health: 10
   Value: 2
   Weight: 1

@@ -12,11 +12,6 @@ public class BlocksCollectedView : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI blocksText;
 
-    private void Awake()
-    {
-        blocksText.text = "";
-    }
-
     private void Start()
     {
         inventory = FindFirstObjectByType<Inventory>();
@@ -42,9 +37,8 @@ public class BlocksCollectedView : MonoBehaviour
         foreach (var block in inventory.GetBlocks())
         {
             yield return new WaitForSeconds(0.3f);
-            //Debug.Log($"{block.Key.name} x{block.Value}");
-            blocksText.text += $"{block.Key.name} x{block.Value}\n";
-
+            
+            blocksText.text += $"<sprite name=\"{block.Key.Sprite.name}\"> {block.Key.name} x{block.Value}\n";
         }
     }
 }

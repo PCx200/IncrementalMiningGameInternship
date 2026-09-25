@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Iron
   m_EditorClassIdentifier: Assembly-CSharp::BlockData
   Prefab: {fileID: 1192785716669997791, guid: 23e2e3c203bfbec4384b440d12a1e6b1, type: 3}
+  Sprite: {fileID: 11400000, guid: f6a69017c425a4147a3db02aa333b0be, type: 2}
   Health: 50
   Value: 16
   Weight: 1
