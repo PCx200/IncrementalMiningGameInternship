@@ -36,9 +36,12 @@ public class BlocksCollectedView : MonoBehaviour
 
         foreach (var block in inventory.GetBlocks())
         {
-            yield return new WaitForSeconds(0.3f);
+            float animationDurration = 0.3f;
+            yield return new WaitForSeconds(animationDurration);
             
             blocksText.text += $"<sprite name=\"{block.Key.Sprite.name}\"> {block.Key.name} x{block.Value}\n";
         }
+
+        //inventory.Clear();
     }
 }

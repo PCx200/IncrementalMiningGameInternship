@@ -28,7 +28,6 @@ public class EconomyManager : MonoBehaviour
 
     private void Start()
     {
-        inventory = FindFirstObjectByType<Inventory>();
         RoundManager.Instance.OnRoundEnd += AddProfit;
     }
 
@@ -37,8 +36,19 @@ public class EconomyManager : MonoBehaviour
         RoundManager.Instance.OnRoundEnd -= AddProfit;
     }
 
+    public void SetInventory(Inventory inventory)
+    {
+        this.inventory = inventory;
+    }
+
     public int CalculateProfit()
     {
+
+        if (inventory == null)
+        {
+            return 0;
+        }
+
         int profit = 0;
 
         foreach (var block in inventory.GetBlocks())

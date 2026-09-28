@@ -9,6 +9,11 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private BlockDestroyChannel blockDestroyChannel;
 
+    private void Start()
+    {
+        EconomyManager.Instance.SetInventory(this);
+    }
+
     private void OnEnable()
     {
         blockDestroyChannel.Raised += AddBlock;
@@ -34,5 +39,10 @@ public class Inventory : MonoBehaviour
     public IEnumerable<KeyValuePair<BlockData, int>> GetBlocks()
     {
         return blocks;
+    }
+
+    public void Clear()
+    {
+        blocks.Clear();
     }
 }

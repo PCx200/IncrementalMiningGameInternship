@@ -28,7 +28,6 @@ public class CurrencyTextView : MonoBehaviour
     private void ShowCurrency()
     {
         panel.SetActive(true);
-        currencyText.text = "";
 
         currencyText.text = $"{EconomyManager.Instance.MainCurrency}";
     }
