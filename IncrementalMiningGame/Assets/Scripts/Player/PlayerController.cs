@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     private PlayerData data;
+    public PlayerData Data => data;
 
     //The elapsed time since last mining 
     float elapsedTime;

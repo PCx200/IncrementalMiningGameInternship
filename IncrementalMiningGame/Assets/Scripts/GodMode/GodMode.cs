@@ -18,6 +18,9 @@ public class GodMode : MonoBehaviour
     [SerializeField]
     private bool isON;
 
+    [SerializeField]
+    private SkillData skillData;
+
     private void Start()
     {
         defaultDamage = playerData.DrillData.AttackDamage;
@@ -64,6 +67,17 @@ public class GodMode : MonoBehaviour
         foreach (var block in inventory.GetBlocks())
         {
             Debug.Log($"{block.Key.name} x{block.Value}");
+        }
+    }
+
+    private void SkillTest()
+    {
+        Skill skill = new Skill(skillData);
+        PlayerController player = FindFirstObjectByType<PlayerController>();
+
+        if (Keyboard.current.iKey.wasPressedThisFrame)
+        {
+            skill.LevelUp(player);
         }
     }
 }
