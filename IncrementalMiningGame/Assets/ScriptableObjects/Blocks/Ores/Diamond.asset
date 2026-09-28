@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Diamond
   m_EditorClassIdentifier: Assembly-CSharp::BlockData
   Prefab: {fileID: 5065634904472367979, guid: 781b8fe54a33ad14292cda1b3aab7872, type: 3}
+  Sprite: {fileID: 11400000, guid: f6a69017c425a4147a3db02aa333b0be, type: 2}
   Health: 15
   Value: 4
   Weight: 1
