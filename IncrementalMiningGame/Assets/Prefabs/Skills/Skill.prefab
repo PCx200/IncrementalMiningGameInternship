@@ -429,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillNodeView
   descriptionPanel: {fileID: 6814661552542506784}
   upgradeButton: {fileID: 5926195278839113283}
+  lineRenderer: {fileID: 2108701558621354574, guid: 479deb04c1a89f841a08ec1bd927d831, type: 3}
 --- !u!65 &2848977065414051345
 BoxCollider:
   m_ObjectHideFlags: 0
