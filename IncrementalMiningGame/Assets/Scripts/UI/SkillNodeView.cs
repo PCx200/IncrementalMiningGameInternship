@@ -30,7 +30,7 @@ public class SkillNodeView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         skill = GetComponent<Skill>();
 
-        descriptionPanel.transform.parent = descriptionsContainer;
+        descriptionPanel.transform.SetParent(descriptionsContainer);
     }
 
     private void Start()
@@ -104,7 +104,7 @@ public class SkillNodeView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             RectTransform connection = Instantiate(line, currentSkill.parent);
 
-            connection.parent = connectionsContainer;
+            connection.SetParent(connectionsContainer);
 
             connection.position = (start + end) / 2f;
             connection.sizeDelta = new Vector2(distance, line.sizeDelta.y);
