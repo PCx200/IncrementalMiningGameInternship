@@ -77,7 +77,7 @@ public class GodMode : MonoBehaviour
 
         if (Keyboard.current.iKey.wasPressedThisFrame)
         {
-            skill.LevelUp(player);
+            //skill.LevelUp(player);
         }
     }
 }

@@ -1,16 +1,15 @@
 using System;
 using UnityEngine;
 
-public class Skill
+public class Skill : MonoBehaviour
 {
     [SerializeField]
     private SkillData data;
     public SkillData Data => data;
 
+    [SerializeField]
     private int currentLevel;
     public int CurrentLevel => currentLevel;
-
-    public event Action OnLevelUp;
 
     public Skill(SkillData data)
     {
@@ -18,12 +17,17 @@ public class Skill
         currentLevel = 0;
     }
 
+    private void Awake()
+    {
+        SkillTree.AddSkill(this);
+    }
+
     public bool IsMaxed()
     {
         return currentLevel >= data.MaxLevel;
     }
 
-    public void LevelUp(PlayerController player)
+    public void LevelUp()
     {
         if (IsMaxed())
         {
@@ -32,9 +36,7 @@ public class Skill
         
         currentLevel++;
 
-        data.Effect?.Apply(player, this);
-
-        OnLevelUp?.Invoke();
+        SkillTree.SkillLeveled();
     }
 
     public int GetCost()
@@ -44,11 +46,21 @@ public class Skill
 
     public float GetMultiplier()
     {
-        return data.MultiplierPerLevel[currentLevel];
+        if (IsMaxed())
+        {
+            return data.BaseMultiplier + data.MultiplierPerLevel[data.MaxLevel - 1];
+        }
+
+        return data.BaseMultiplier + data.MultiplierPerLevel[currentLevel];
     }
 
     public bool IsUnlocked()
     {
+        if (data.Prerequisites == null || data.Prerequisites.Count == 0)
+        {
+            return true;
+        }
+
         foreach (var skillPrerequisite in data.Prerequisites)
         {
             Skill requiredSkill = SkillTree.GetSkill(skillPrerequisite.SkillData);
@@ -62,11 +74,31 @@ public class Skill
         return true;
     }
 
+    public bool HasAnyUnlockedPrerequisite()
+    {
+        if (data.Prerequisites == null || data.Prerequisites.Count == 0)
+        {
+            return true;
+        }
+
+        foreach (var skillPrerequisite in data.Prerequisites)
+        {
+            Skill requiredSkill = SkillTree.GetSkill(skillPrerequisite.SkillData);
+
+            if (requiredSkill.CurrentLevel > 0)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public string GetDescription()
     {
         string description;
 
-        description = $"{data.Description} +{GetMultiplier()}%";
+        description = $"{data.Description} +{GetMultiplier() * 100}%";
 
         return description;
     }

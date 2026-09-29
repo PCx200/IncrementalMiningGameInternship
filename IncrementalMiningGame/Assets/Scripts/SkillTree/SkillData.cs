@@ -22,7 +22,7 @@ public class SkillData : ScriptableObject
     
     public List<float> MultiplierPerLevel;
     
-    public List<SkillPrerequisite> Prerequisites;
+    public List<SkillPrerequisite> Prerequisites = new();
 
     public SkillEffect Effect;
 }
