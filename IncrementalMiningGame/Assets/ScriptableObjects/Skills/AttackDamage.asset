@@ -27,4 +27,4 @@ MonoBehaviour:
   - 0.22
   - 0.35
   Prerequisites: []
-  Effect: {fileID: 11400000, guid: bb50d7eb15c4cee4e9c9c3fe7fdc1eba, type: 2}
+  SkillOutput: {fileID: 11400000, guid: b7b137e304e65164bab0a9fcc17d8c0e, type: 2}

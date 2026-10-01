@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -40,12 +39,13 @@ public class SkillNodeView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void OnEnable()
     {
-        SkillTree.OnSkillLeveled += DisplaySkill;
-    }
+        GameManager.Instance.SkillTree.OnSkillLeveled += OnSkillLeveled;
+    }   
+    
 
     private void OnDisable()
     {
-        SkillTree.OnSkillLeveled -= DisplaySkill;
+         GameManager.Instance.SkillTree.OnSkillLeveled -= OnSkillLeveled;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -56,6 +56,11 @@ public class SkillNodeView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerExit(PointerEventData eventData)
     {
         descriptionPanel.SetActive(false);
+    }
+
+    private void OnSkillLeveled(Skill leveledSkill)
+    {
+        DisplaySkill();
     }
 
     private void DisplaySkill()
@@ -89,9 +94,20 @@ public class SkillNodeView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         var prerequisites = skill.Data.Prerequisites;
 
+
+        if (skill.Data.Prerequisites == null ||
+            skill.Data.Prerequisites.Count == 0)
+        {
+            isConnected = true;
+            return;
+        }
+
         foreach (var prerequisite in prerequisites)
         {
-            Skill prerequisiteSkill = SkillTree.GetSkill(prerequisite.SkillData);
+            if (!GameManager.Instance.SkillTree.TryGetSkill(prerequisite.SkillData, out Skill prerequisiteSkill))
+            {
+                continue;
+            }
 
             RectTransform prerequisiteSkillRectTransform = prerequisiteSkill.GetComponent<RectTransform>();
 

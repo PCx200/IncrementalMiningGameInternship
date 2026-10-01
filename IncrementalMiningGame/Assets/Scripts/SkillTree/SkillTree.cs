@@ -1,29 +1,70 @@
 using System;
 using System.Collections.Generic;
 
-public static class SkillTree
+public class SkillTree
 {
-    private static Dictionary<SkillData, Skill> skills = new();
-    public static Dictionary<SkillData, Skill> Skills => skills;
+    private Dictionary<SkillData, Skill> skills = new();
 
-    public static event Action OnSkillLeveled;
+    public event Action<Skill> OnSkillLeveled;
 
-    public static void AddSkill(Skill skill)
+    public void RegisterSkill(Skill skill)
     {
+        if (skill == null || skill.Data == null)
+        {
+            return;
+        }
+
         skills[skill.Data] = skill;
     }
 
-    public static Skill GetSkill(SkillData skill)
+    public void UnregisterSkill(Skill skill)
     {
-        return skills[skill];
+        if (skill == null || skill.Data == null)
+        {
+            return;
+        }
+
+        if (skills.TryGetValue(skill.Data, out Skill registeredSkill) && registeredSkill == skill)
+        {
+            skills.Remove(skill.Data);
+        }
     }
 
-    public static void SkillLeveled()
+    public bool TryGetSkill(SkillData skillData, out Skill skill)
     {
-        OnSkillLeveled?.Invoke();
+        return skills.TryGetValue(skillData, out skill);
     }
 
-    public static void Clear()
+    public bool TryLevelUp(Skill skill)
+    {
+        //needs logic
+
+        if (skill == null)
+        {
+            return false;
+        }
+
+        if (skill.IsMaxed())
+        {
+            return false;
+        }
+
+        if (!skill.IsUnlocked())
+        {
+            return false;
+        }
+
+        //reduce the cost from the economy manager
+        int cost = skill.GetCost();
+
+        skill.SetLevel(skill.CurrentLevel + 1);
+
+        OnSkillLeveled.Invoke(skill);
+
+        return true;
+    }
+
+    public void Clear()
     {
         skills.Clear();
     }

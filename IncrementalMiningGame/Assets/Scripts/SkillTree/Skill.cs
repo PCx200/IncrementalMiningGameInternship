@@ -11,15 +11,17 @@ public class Skill : MonoBehaviour
     private int currentLevel;
     public int CurrentLevel => currentLevel;
 
-    public Skill(SkillData data)
-    {
-        this.data = data;
-        currentLevel = 0;
-    }
-
     private void Awake()
     {
-        SkillTree.AddSkill(this);
+        GameManager.Instance.SkillTree.RegisterSkill(this);
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SkillTree.UnregisterSkill(this);
+        }
     }
 
     public bool IsMaxed()
@@ -29,14 +31,7 @@ public class Skill : MonoBehaviour
 
     public void LevelUp()
     {
-        if (IsMaxed())
-        {
-            return;
-        }
-        
-        currentLevel++;
-
-        SkillTree.SkillLeveled();
+        GameManager.Instance.SkillTree?.TryLevelUp(this);
     }
 
     public int GetCost()
@@ -63,7 +58,10 @@ public class Skill : MonoBehaviour
 
         foreach (var skillPrerequisite in data.Prerequisites)
         {
-            Skill requiredSkill = SkillTree.GetSkill(skillPrerequisite.SkillData);
+            if (!GameManager.Instance.SkillTree.TryGetSkill(skillPrerequisite.SkillData, out Skill requiredSkill))
+            {
+                return false;
+            }
 
             if (requiredSkill.CurrentLevel < skillPrerequisite.RequiredLevel)
             {
@@ -83,7 +81,10 @@ public class Skill : MonoBehaviour
 
         foreach (var skillPrerequisite in data.Prerequisites)
         {
-            Skill requiredSkill = SkillTree.GetSkill(skillPrerequisite.SkillData);
+            if (!GameManager.Instance.SkillTree.TryGetSkill(skillPrerequisite.SkillData, out Skill requiredSkill))
+            {
+                continue;
+            }
 
             if (requiredSkill.CurrentLevel > 0)
             {
@@ -101,5 +102,10 @@ public class Skill : MonoBehaviour
         description = $"{data.Description} +{GetMultiplier() * 100}%";
 
         return description;
+    }
+
+    internal void SetLevel(int level)
+    {
+        currentLevel = level;
     }
 }

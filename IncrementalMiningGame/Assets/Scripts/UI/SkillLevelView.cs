@@ -1,11 +1,11 @@
 using TMPro;
 using UnityEngine;
 
-public class SkillDescriptionView : MonoBehaviour
+public class SkillLevelView : MonoBehaviour
 {
 
     [SerializeField]
-    private TextMeshProUGUI descriptionText;
+    private TextMeshProUGUI levelText;
 
     [SerializeField]
     private Skill skill;
@@ -22,7 +22,7 @@ public class SkillDescriptionView : MonoBehaviour
 
     private void OnDisable()
     {
-        GameManager.Instance.SkillTree.OnSkillLeveled -= OnSkillLeveled; 
+        GameManager.Instance.SkillTree.OnSkillLeveled -= OnSkillLeveled;
     }
 
     private void OnSkillLeveled(Skill leveledSkill)
@@ -32,11 +32,13 @@ public class SkillDescriptionView : MonoBehaviour
             return;
         }
 
-        ShowDescription();
+        UpdateLevelText();
     }
 
-    private void ShowDescription()
+    private void UpdateLevelText()
     {
-        descriptionText.text = $"{skill.GetDescription()}";
+        levelText.text = $"{skill.CurrentLevel}/{skill.Data.MaxLevel}";
     }
+
+
 }

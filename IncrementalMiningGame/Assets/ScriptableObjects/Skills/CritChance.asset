@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa16d20c94db8c946b5d7a64f030ee5e, type: 3}
-  m_Name: AttackDamage 1
+  m_Name: CritChance
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   ID: 
   Icon: {fileID: 0}
-  Name: Attack Damage
-  Description: 'Increases attack damage '
+  Name: Crit Chance
+  Description: 'Increases the crit chance '
   Cost: 10
   CostMultiplier: 1.5
   MaxLevel: 5
@@ -28,5 +28,7 @@ MonoBehaviour:
   - 0.35
   Prerequisites:
   - SkillData: {fileID: 11400000, guid: 59ce0fbf0a3b5ef46ac15b79ec498fc1, type: 2}
-    RequiredLevel: 2
+    RequiredLevel: 4
+  - SkillData: {fileID: 11400000, guid: d383cfa4be2fd4446affb7a55391644c, type: 2}
+    RequiredLevel: 3
   Effect: {fileID: 11400000, guid: bb50d7eb15c4cee4e9c9c3fe7fdc1eba, type: 2}

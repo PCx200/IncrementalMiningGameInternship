@@ -24,5 +24,5 @@ public class SkillData : ScriptableObject
     
     public List<SkillPrerequisite> Prerequisites = new();
 
-    public SkillEffect Effect;
+    public SkillOutput SkillOutput;
 }
