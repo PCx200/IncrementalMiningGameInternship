@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SkillDescriptionView : MonoBehaviour
 {
+    [SerializeField]
+    private TextMeshProUGUI nameText;
 
     [SerializeField]
     private TextMeshProUGUI descriptionText;
@@ -12,6 +14,8 @@ public class SkillDescriptionView : MonoBehaviour
 
     private void Start()
     {
+        nameText.text = skill.Data.Name;
+
         OnSkillLeveled(skill);
     }
 
@@ -37,6 +41,27 @@ public class SkillDescriptionView : MonoBehaviour
 
     private void ShowDescription()
     {
-        descriptionText.text = $"{skill.GetDescription()}";
+        SkillModifier modifier =
+         skill.Data.SkillOutput as SkillModifier;
+
+        if (modifier == null)
+        {
+            descriptionText.text = skill.GetDescription();
+            return;
+        }
+
+        int nextLevel = skill.CurrentLevel + 1;
+    
+
+        if (nextLevel <= skill.Data.MaxLevel)
+        {
+            float nextValue = modifier.GetValue(nextLevel);
+            descriptionText.text = $"{skill.GetDescription()} +{nextValue * 100f:0.#}%";
+        }
+        else
+        {
+            float maxLevelValue = modifier.GetValue(skill.CurrentLevel);
+            descriptionText.text = $"{skill.GetDescription()} +{maxLevelValue * 100f:0.#}%";
+        }
     }
 }

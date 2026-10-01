@@ -111,8 +111,8 @@ public class SkillNodeView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             RectTransform prerequisiteSkillRectTransform = prerequisiteSkill.GetComponent<RectTransform>();
 
-            Vector3 start = currentSkill.position;
-            Vector3 end = prerequisiteSkillRectTransform.position;
+            Vector3 start = currentSkill.anchoredPosition;
+            Vector3 end = prerequisiteSkillRectTransform.anchoredPosition;
 
             Vector3 direction = end - start;
 
@@ -122,7 +122,7 @@ public class SkillNodeView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             connection.SetParent(connectionsContainer);
 
-            connection.position = (start + end) / 2f;
+            connection.anchoredPosition = (start + end) / 2f;
             connection.sizeDelta = new Vector2(distance, line.sizeDelta.y);
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

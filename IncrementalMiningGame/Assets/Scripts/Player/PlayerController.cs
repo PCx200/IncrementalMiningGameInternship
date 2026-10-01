@@ -85,6 +85,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        block.TakeDamage(data.DrillData.AttackDamage);
+        float drillDMG = data.DrillData.AttackDamage;
+        float calcDrillDmg = GameManager.Instance.ModifierManager.GetValue("drill.AttackDamage", drillDMG);
+
+        Debug.Log($"{drillDMG} - {calcDrillDmg}");
+
+        block.TakeDamage(calcDrillDmg);
     }
 }

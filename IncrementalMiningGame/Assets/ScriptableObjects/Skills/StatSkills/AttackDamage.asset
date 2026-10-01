@@ -12,19 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa16d20c94db8c946b5d7a64f030ee5e, type: 3}
   m_Name: AttackDamage
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  ID: 
+  ID: 0
   Icon: {fileID: 0}
   Name: Attack Damage
   Description: 'Increases attack damage '
   Cost: 10
   CostMultiplier: 1.5
   MaxLevel: 5
-  BaseMultiplier: 0.1
-  MultiplierPerLevel:
-  - 0
-  - 0.05
-  - 0.12
-  - 0.22
-  - 0.35
   Prerequisites: []
   SkillOutput: {fileID: 11400000, guid: b7b137e304e65164bab0a9fcc17d8c0e, type: 2}
