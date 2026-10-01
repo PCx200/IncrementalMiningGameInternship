@@ -7,7 +7,7 @@ public class GodMode : MonoBehaviour
     private PlayerData playerData;
 
     [SerializeField]
-    private Inventory inventory;
+    private ResourceBag inventory;
 
     [SerializeField]
     private float defaultDamage;

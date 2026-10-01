@@ -39,6 +39,4 @@ public class SkillLevelView : MonoBehaviour
     {
         levelText.text = $"{skill.CurrentLevel}/{skill.Data.MaxLevel}";
     }
-
-
 }

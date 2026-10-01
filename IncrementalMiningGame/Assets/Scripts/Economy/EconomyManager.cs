@@ -5,7 +5,7 @@ public class EconomyManager : MonoBehaviour
 {
     public static EconomyManager Instance;
 
-    private Inventory inventory;
+    private ResourceBag inventory;
 
     [SerializeField]
     private int mainCurrency;
@@ -17,7 +17,7 @@ public class EconomyManager : MonoBehaviour
     {
         if (Instance)
         {
-            DestroyImmediate(gameObject);
+            Destroy(gameObject);
             return;
         }
 
@@ -36,7 +36,7 @@ public class EconomyManager : MonoBehaviour
         RoundManager.Instance.OnRoundEnd -= AddProfit;
     }
 
-    public void SetInventory(Inventory inventory)
+    public void SetInventory(ResourceBag inventory)
     {
         this.inventory = inventory;
     }

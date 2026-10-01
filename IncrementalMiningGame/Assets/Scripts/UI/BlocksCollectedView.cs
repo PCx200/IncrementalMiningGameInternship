@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlocksCollectedView : MonoBehaviour
 {
-    private Inventory inventory;
+    private ResourceBag inventory;
 
     [SerializeField]
     private GameObject panel;
@@ -14,7 +14,7 @@ public class BlocksCollectedView : MonoBehaviour
 
     private void Start()
     {
-        inventory = FindFirstObjectByType<Inventory>();
+        inventory = FindFirstObjectByType<ResourceBag>();
 
         RoundManager.Instance.OnRoundEnd += ShowCollectedBlocks;
     }

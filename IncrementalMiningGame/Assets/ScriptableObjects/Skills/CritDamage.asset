@@ -29,4 +29,4 @@ MonoBehaviour:
   Prerequisites:
   - SkillData: {fileID: 11400000, guid: c4e33405219f00c43a04ff82f11d5bfe, type: 2}
     RequiredLevel: 4
-  Effect: {fileID: 11400000, guid: bb50d7eb15c4cee4e9c9c3fe7fdc1eba, type: 2}
+  SkillOutput: {fileID: 11400000, guid: 68d80f5e0c0278a438b57f9300cb0eae, type: 2}

@@ -17,11 +17,7 @@ public class SkillData : ScriptableObject
     public float CostMultiplier;
 
     public int MaxLevel;
-    
-    public float BaseMultiplier;
-    
-    public List<float> MultiplierPerLevel;
-    
+
     public List<SkillPrerequisite> Prerequisites = new();
 
     public SkillOutput SkillOutput;
