@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa16d20c94db8c946b5d7a64f030ee5e, type: 3}
+  m_Name: SkillData 19
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  ID: 
+  Icon: {fileID: 0}
+  Name: 19
+  Description: 19
+  Cost: 19
+  CostMultiplier: 19
+  MaxLevel: 5
+  Prerequisites:
+  - SkillData: {fileID: 11400000, guid: 8ab586b5b1040e34aae828f5b7de5ebc, type: 2}
+    RequiredLevel: 3
+  SkillOutput: {fileID: 0}

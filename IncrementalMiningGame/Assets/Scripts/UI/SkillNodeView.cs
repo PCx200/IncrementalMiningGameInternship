@@ -30,6 +30,11 @@ public class SkillNodeView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         skill = GetComponent<Skill>();
 
         descriptionPanel.transform.SetParent(descriptionsContainer);
+
+        // Prevents the button from being active the first frame after loading
+        Button button = upgradeButton.GetComponent<Button>();
+        button.interactable = false;
+        upgradeButton.SetActive(false);
     }
 
     private void Start()
