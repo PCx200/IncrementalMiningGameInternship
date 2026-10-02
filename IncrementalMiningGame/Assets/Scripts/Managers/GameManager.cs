@@ -32,9 +32,4 @@ public class GameManager : MonoBehaviour
 
         skillIntegrationManager = new SkillIntegrationManager(skillTree, modifierManager, abilityManager);
     }
-
-    private void Start()
-    {
-    }
-
 }

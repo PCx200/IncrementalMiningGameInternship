@@ -1,14 +1,8 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class ModifierManager
 {
     private Dictionary<string, List<ActiveModifier>> modifiers = new();
-
-    public ModifierManager()
-    {
-
-    }
 
     public void Rebuild(IReadOnlyDictionary<SkillData, int> skillLevels)
     {

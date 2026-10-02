@@ -15,10 +15,7 @@ public class Skill : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.SkillTree.UnregisterSkill(this);
-        }
+        GameManager.Instance.SkillTree.UnregisterSkill(this);
     }
 
     public void LevelUp()
@@ -43,8 +40,6 @@ public class Skill : MonoBehaviour
 
     public string GetDescription()
     {
-        // + add the stat increase based on the stat modifier data after the description
-
         return data.Description;
     }
 }

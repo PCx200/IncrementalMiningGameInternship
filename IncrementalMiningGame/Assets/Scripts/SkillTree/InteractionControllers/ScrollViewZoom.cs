@@ -31,7 +31,7 @@ public class ScrollViewZoom : MonoBehaviour, IScrollHandler
         float zoomFactor = 1f + eventData.scrollDelta.y * zoomSpeed;
         float newScale = Mathf.Clamp(oldScale * zoomFactor, minZoom, maxZoom);
 
-        // Don't do anything if we're already at the limit
+        // Don't do anything if we are already at the limit
         if (Mathf.Approximately(oldScale, newScale))
         { 
             return;
@@ -40,8 +40,7 @@ public class ScrollViewZoom : MonoBehaviour, IScrollHandler
         // Position of the mouse relative to the Content
         Vector2 contentPositionBefore = content.anchoredPosition;
 
-        // How much the content needs to move to keep the mouse
-        // over the same point in the content
+        // How much the content needs to move to keep the mouse over the same point in the content
         Vector2 offsetFromContent = mousePosition - contentPositionBefore;
 
         float scaleRatio = newScale / oldScale;

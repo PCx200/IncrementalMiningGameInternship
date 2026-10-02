@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class AbilityManager
 {
@@ -31,4 +29,6 @@ public class AbilityManager
     {
         return unlockedAbilities.Contains(abilityID);
     }
+
+    //UNFINISHED
 }

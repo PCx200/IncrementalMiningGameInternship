@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SkillUnlock", menuName = "Scriptable Objects/SkillUnlock")]
