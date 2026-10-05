@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     private PlayerData data;
+    public PlayerData Data => data;
 
     //The elapsed time since last mining 
     float elapsedTime;
@@ -84,6 +85,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        block.TakeDamage(data.DrillData.AttackDamage);
+        float drillDamage = data.DrillData.AttackDamage;
+        float calculatedDrillDamage = GameManager.Instance.ModifierManager.GetValue("drill.AttackDamage", drillDamage);
+
+        Debug.Log($"{drillDamage} - {calculatedDrillDamage}");
+
+        block.TakeDamage(calculatedDrillDamage);
     }
 }

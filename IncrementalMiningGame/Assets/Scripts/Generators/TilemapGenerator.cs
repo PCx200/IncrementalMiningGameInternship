@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class TilemapGenerator<T>
 {
     public readonly T[,] Tilemap;

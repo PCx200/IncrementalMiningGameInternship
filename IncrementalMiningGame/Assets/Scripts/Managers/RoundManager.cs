@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class RoundManager : MonoBehaviour
@@ -10,7 +9,7 @@ public class RoundManager : MonoBehaviour
 
     private PlayerController player;
 
-    private Inventory inventory;
+    private ResourceBag resourceBag;
 
     public event Action OnRoundEnd;
 
@@ -20,7 +19,7 @@ public class RoundManager : MonoBehaviour
     {
         if (Instance)
         {
-            DestroyImmediate(gameObject);
+            Destroy(gameObject);
             return;
         }
 
@@ -69,7 +68,7 @@ public class RoundManager : MonoBehaviour
         player = FindFirstObjectByType<PlayerController>();
         player.enabled = false;
 
-        inventory = FindFirstObjectByType<Inventory>();
-        inventory.enabled = false;
+        resourceBag = FindFirstObjectByType<ResourceBag>();
+        resourceBag.enabled = false;
     }
 }

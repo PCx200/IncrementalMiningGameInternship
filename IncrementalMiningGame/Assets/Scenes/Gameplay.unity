@@ -782,7 +782,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1493856148}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c3a020f77757b5498019eb413d41e66, type: 3}
+  m_Script: {fileID: 11500000, guid: f8d814011f1a16c448a34bf05be1873d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
   blockDestroyChannel: {fileID: 11400000, guid: 1b74e800cc28d21489f0dfa3749c4ec2, type: 2}

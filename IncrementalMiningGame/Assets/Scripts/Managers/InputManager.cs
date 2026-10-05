@@ -24,7 +24,7 @@ public class InputManager : MonoBehaviour
     {
         if (Instance)
         {
-            DestroyImmediate(gameObject);
+            Destroy(gameObject);
             return;
         }
 

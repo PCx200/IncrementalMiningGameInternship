@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa16d20c94db8c946b5d7a64f030ee5e, type: 3}
+  m_Name: CriticalChance
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  ID: 
+  Icon: {fileID: 0}
+  Name: Crit Chance
+  Description: 'Increases the crit chance '
+  Cost: 10
+  CostMultiplier: 1.5
+  MaxLevel: 5
+  BaseMultiplier: 0.1
+  MultiplierPerLevel:
+  - 0
+  - 0.05
+  - 0.12
+  - 0.22
+  - 0.35
+  Prerequisites:
+  - SkillData: {fileID: 11400000, guid: 59ce0fbf0a3b5ef46ac15b79ec498fc1, type: 2}
+    RequiredLevel: 4
+  - SkillData: {fileID: 11400000, guid: d383cfa4be2fd4446affb7a55391644c, type: 2}
+    RequiredLevel: 3
+  SkillOutput: {fileID: 11400000, guid: 775f2e6bedf741849805175fd629c8b8, type: 2}

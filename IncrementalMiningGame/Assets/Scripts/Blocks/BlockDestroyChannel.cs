@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "BlockDestroyChannel", menuName = "Scriptable Objects/BlockDestroyChannel")]
