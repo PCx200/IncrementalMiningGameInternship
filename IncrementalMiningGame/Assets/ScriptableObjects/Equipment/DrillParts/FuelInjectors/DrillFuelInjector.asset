@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 837e251b7628d124d9525c1e32b8d9c5, type: 3}
+  m_Name: DrillFuelInjector
+  m_EditorClassIdentifier: Assembly-CSharp::DrillFuelInjector
+  Name: 
+  Icon: {fileID: 0}
+  AttackDamage: 0
+  AttackSpeed: 0
+  CriticalChance: 0
+  CriticalDamage: 0
+  FuelTankCapacity: 0
+  FuelConsumptionPerSecond: 0
