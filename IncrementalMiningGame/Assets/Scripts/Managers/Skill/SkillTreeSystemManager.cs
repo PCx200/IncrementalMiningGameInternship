@@ -1,10 +1,10 @@
-public class SkillIntegrationManager
+public class SkillTreeSystemManager
 {
     private SkillTree skillTree;
     private ModifierManager modifierManager;
     private AbilityManager abilityManager;
 
-    public SkillIntegrationManager(SkillTree skillTree, ModifierManager modifierManager, AbilityManager abilityManager)
+    public SkillTreeSystemManager(SkillTree skillTree, ModifierManager modifierManager, AbilityManager abilityManager)
     {
         this.skillTree = skillTree;
         this.modifierManager = modifierManager;

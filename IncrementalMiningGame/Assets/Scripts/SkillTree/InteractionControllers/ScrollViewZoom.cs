@@ -18,7 +18,9 @@ public class ScrollViewZoom : MonoBehaviour, IScrollHandler
     public void OnScroll(PointerEventData eventData)
     {
         if (eventData.scrollDelta.y == 0)
+        { 
             return;
+        }
 
         // Mouse position in viewport-local coordinates
         RectTransformUtility.ScreenPointToLocalPointInRectangle(viewport, eventData.position,

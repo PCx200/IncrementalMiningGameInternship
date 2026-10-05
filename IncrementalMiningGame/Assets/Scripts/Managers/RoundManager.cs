@@ -9,7 +9,7 @@ public class RoundManager : MonoBehaviour
 
     private PlayerController player;
 
-    private ResourceBag inventory;
+    private ResourceBag resourceBag;
 
     public event Action OnRoundEnd;
 
@@ -68,7 +68,7 @@ public class RoundManager : MonoBehaviour
         player = FindFirstObjectByType<PlayerController>();
         player.enabled = false;
 
-        inventory = FindFirstObjectByType<ResourceBag>();
-        inventory.enabled = false;
+        resourceBag = FindFirstObjectByType<ResourceBag>();
+        resourceBag.enabled = false;
     }
 }

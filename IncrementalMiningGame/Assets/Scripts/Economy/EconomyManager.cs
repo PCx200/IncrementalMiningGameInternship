@@ -5,7 +5,7 @@ public class EconomyManager : MonoBehaviour
 {
     public static EconomyManager Instance;
 
-    private ResourceBag inventory;
+    private ResourceBag resourceBag;
 
     [SerializeField]
     private int mainCurrency;
@@ -38,20 +38,20 @@ public class EconomyManager : MonoBehaviour
 
     public void SetInventory(ResourceBag inventory)
     {
-        this.inventory = inventory;
+        this.resourceBag = inventory;
     }
 
     public int CalculateProfit()
     {
 
-        if (inventory == null)
+        if (resourceBag == null)
         {
             return 0;
         }
 
         int profit = 0;
 
-        foreach (var block in inventory.GetBlocks())
+        foreach (var block in resourceBag.GetBlocks())
         {
             int blockValue = block.Key.Value;
             int count = block.Value;

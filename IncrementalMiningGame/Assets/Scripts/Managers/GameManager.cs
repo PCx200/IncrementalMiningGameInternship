@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     private AbilityManager abilityManager;
     public AbilityManager AbilityManager => abilityManager;
 
-    private SkillIntegrationManager skillIntegrationManager;
-    public SkillIntegrationManager SkillIntegrationManager => skillIntegrationManager;
+    private SkillTreeSystemManager skillTreeSystemManager;
+    public SkillTreeSystemManager SkillIntegrationManager => skillTreeSystemManager;
 
     private void Awake()
     {
@@ -30,6 +30,6 @@ public class GameManager : MonoBehaviour
         modifierManager = new ModifierManager();
         abilityManager = new AbilityManager();
 
-        skillIntegrationManager = new SkillIntegrationManager(skillTree, modifierManager, abilityManager);
+        skillTreeSystemManager = new SkillTreeSystemManager(skillTree, modifierManager, abilityManager);
     }
 }
