@@ -12,6 +12,7 @@ public class SkillData : ScriptableObject
     [TextArea]
     public string Description;
 
+    public CurrencyData Currency;
     public int Cost;
 
     public float CostMultiplier;

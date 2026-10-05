@@ -10,7 +10,7 @@ public class ResourceBag : MonoBehaviour
 
     private void Start()
     {
-        EconomyManager.Instance.SetInventory(this);
+        EconomyManager.Instance.SetResourceBag(this);
     }
 
     private void OnEnable()

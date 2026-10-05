@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EconomyManager : MonoBehaviour
@@ -7,11 +8,10 @@ public class EconomyManager : MonoBehaviour
 
     private ResourceBag resourceBag;
 
-    [SerializeField]
-    private int mainCurrency;
-    public int MainCurrency => mainCurrency;
+    private Dictionary<CurrencyData, int> currencies = new();
 
     public event Action OnCurrencyCalculated;
+    public event Action<CurrencyData, int> OnCurrencyChanged;
 
     private void Awake()
     {
@@ -36,36 +36,102 @@ public class EconomyManager : MonoBehaviour
         RoundManager.Instance.OnRoundEnd -= AddProfit;
     }
 
-    public void SetInventory(ResourceBag inventory)
+    public void SetResourceBag(ResourceBag resourceBag)
     {
-        this.resourceBag = inventory;
+        this.resourceBag = resourceBag;
     }
 
-    public int CalculateProfit()
+    public int GetValueOfCurrency(CurrencyData currencyData)
     {
-
-        if (resourceBag == null)
-        {
+        if (currencyData == null)
+        { 
             return 0;
         }
 
-        int profit = 0;
+        return currencies.GetValueOrDefault(currencyData, 0);
+    }
+
+    public Dictionary<CurrencyData, int> CalculateProfit()
+    {
+        Dictionary<CurrencyData, int> profit = new();
 
         foreach (var block in resourceBag.GetBlocks())
         {
-            int blockValue = block.Key.Value;
-            int count = block.Value;
+            BlockData blockData = block.Key;
+            int blockCount = block.Value;
 
-            profit += blockValue * count;
+            CurrencyData currencyData = blockData.Currency;
+            int value = blockData.Value;
+
+            int totalValue = blockCount * value;
+
+            if (profit.ContainsKey(currencyData))
+            {
+                profit[currencyData] += totalValue;
+            }
+            else
+            {
+                profit.Add(currencyData, totalValue);
+            }
+        }
+            return profit;
+    }
+
+    public void AddCurrency(CurrencyData currencyData, int amount)
+    {
+        if (currencyData == null)
+        { 
+            return;
         }
 
-        return profit;
+        if (amount == 0)
+        {         
+            return;
+        }  
+
+        if (currencies.ContainsKey(currencyData))
+        {
+            currencies[currencyData] += amount;
+        }
+        else
+        {
+            currencies.Add(currencyData, amount);
+        }
+
+        OnCurrencyChanged?.Invoke(currencyData, currencies[currencyData]);
     }
 
     public void AddProfit()
     {
-        mainCurrency += CalculateProfit();
+        Dictionary<CurrencyData, int> profit = CalculateProfit();
+
+        foreach (var entry in profit)
+        {
+            AddCurrency(entry.Key, entry.Value);
+        }
 
         OnCurrencyCalculated?.Invoke();
+    }
+
+    public bool TrySpendCurrency(CurrencyData currency, int amount)
+    {
+        if (currency == null || amount <= 0)
+        { 
+            return false;
+        }
+
+        int currentAmount = GetValueOfCurrency(currency);
+
+        if (currentAmount < amount)
+        { 
+            return false;
+        }
+
+        currencies[currency] -= amount;
+
+        OnCurrencyChanged?.Invoke(currency, currencies[currency]);
+        OnCurrencyCalculated?.Invoke();
+
+        return true;
     }
 }

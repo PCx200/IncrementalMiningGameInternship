@@ -17,8 +17,12 @@ public class BlockData : ScriptableObject
 
     [Header("Stats")]
     public float Health;
-    public int Value;
+
     public float Weight;
+
+    [Header("Economy")]
+    public CurrencyData Currency;
+    public int Value;
 
     [Header("Fuel-related")]
     public float FuelConsumption;

@@ -71,8 +71,13 @@ public class SkillTree
             return false;
         }
 
-        //TODO: deduct the cost from the economy manager
         int cost = skill.GetCost();
+        int currentValue = EconomyManager.Instance.GetValueOfCurrency(skill.Data.Currency);
+
+        if (!EconomyManager.Instance.TrySpendCurrency(skill.Data.Currency, cost))
+        {
+            return false;
+        }
 
         SetLevel(skill.Data, skill.CurrentLevel + 1);
 

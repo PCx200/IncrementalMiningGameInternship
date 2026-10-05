@@ -15,8 +15,9 @@ MonoBehaviour:
   Prefab: {fileID: 5065634904472367979, guid: 781b8fe54a33ad14292cda1b3aab7872, type: 3}
   Sprite: {fileID: 11400000, guid: f6a69017c425a4147a3db02aa333b0be, type: 2}
   Health: 15
-  Value: 4
   Weight: 1
+  Currency: {fileID: 11400000, guid: c9d5f4df82fa8294c87afe23462d1df4, type: 2}
+  Value: 4
   FuelConsumption: 9
   FuelPenalty: 75
   GenerationType: 2

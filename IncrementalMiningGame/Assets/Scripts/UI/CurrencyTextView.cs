@@ -9,6 +9,9 @@ public class CurrencyTextView : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI currencyText;
 
+    [SerializeField]
+    private CurrencyData currencyData;
+
     private void Awake()
     {
         currencyText.text = "";
@@ -28,6 +31,6 @@ public class CurrencyTextView : MonoBehaviour
     {
         panel.SetActive(true);
 
-        currencyText.text = $"{EconomyManager.Instance.MainCurrency}";
+        currencyText.text = $"{EconomyManager.Instance.GetValueOfCurrency(currencyData)}";
     }
 }
