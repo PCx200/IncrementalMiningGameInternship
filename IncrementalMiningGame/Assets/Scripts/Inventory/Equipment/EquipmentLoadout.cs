@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,8 +10,12 @@ public class EquipmentLoadout : MonoBehaviour
     [SerializeField]
     private List<EquipmentSlot> equipmentSlots;
 
+    public List<EquipmentSlot> EquipmentSlots => equipmentSlots;
+
     [SerializeField]
     private EquipmentInventory equipmentInventory;
+
+    public event Action OnLoadoutChanged;
 
     private void Start()
     {
@@ -55,6 +60,8 @@ public class EquipmentLoadout : MonoBehaviour
 
             RebuildEquipmentModifiers();
 
+            OnLoadoutChanged?.Invoke();
+
             return true;
         }
 
@@ -90,6 +97,8 @@ public class EquipmentLoadout : MonoBehaviour
             }
 
             RebuildEquipmentModifiers();
+
+            OnLoadoutChanged?.Invoke();
 
             return true;
         }

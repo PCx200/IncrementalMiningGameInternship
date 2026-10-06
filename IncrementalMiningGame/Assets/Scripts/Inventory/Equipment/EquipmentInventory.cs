@@ -11,9 +11,21 @@ public class EquipmentInventory : MonoBehaviour
     private readonly List<Equipment> items = new();
     public IReadOnlyList<Equipment> Items => items;
 
+    private readonly List<EquipmentItemView> itemViews = new();
+    public IReadOnlyList<EquipmentItemView> ItemViews => itemViews;
+
     public int Count => items.Count;
 
     public event Action OnInventoryChanged;
+
+    private void Start()
+    {
+        for (int i = 0; i < capacity; i++)
+        {
+            EquipmentItemView equipment = transform.GetChild(i).GetComponent<EquipmentItemView>();
+            itemViews.Add(equipment);
+        }
+    }
 
     public bool TryAdd(Equipment item)
     {
@@ -66,6 +78,16 @@ public class EquipmentInventory : MonoBehaviour
         }
 
         return items[index];
+    }
+
+    public EquipmentItemView GetItemView(int index)
+    {
+        if (index < 0 || index >= itemViews.Count)
+        {
+            return null;
+        }
+
+        return itemViews[index];
     }
 
     public bool IsFull()
