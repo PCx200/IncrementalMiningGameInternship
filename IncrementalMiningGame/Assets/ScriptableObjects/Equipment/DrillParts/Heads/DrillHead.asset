@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cff6e72e8654d40b4ede81dcf10ff5, type: 3}
   m_Name: DrillHead
   m_EditorClassIdentifier: Assembly-CSharp::DrillHead
-  Name: 
+  Name: MAMAMIATEST
   Icon: {fileID: 0}
-  AttackDamage: 0
-  AttackSpeed: 0
-  CriticalChance: 0
-  CriticalDamage: 0
-  FuelTankCapacity: 0
-  FuelConsumptionPerSecond: 0
+  SlotType: 1
+  PrimaryModifier:
+    DrillStat: 0
+    ModifierOperation: 0
+    MinValue: 2
+    MaxValue: 7
+  SecondaryModifiers: []
+  SecondaryModifierCountChances: []
