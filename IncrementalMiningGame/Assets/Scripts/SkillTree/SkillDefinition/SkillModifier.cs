@@ -1,11 +1,5 @@
 using UnityEngine;
 
-public enum ModifierOperation
-{ 
-    Add,
-    Multiply
-}
-
 [CreateAssetMenu(fileName = "SkillModifier", menuName = "Scriptable Objects/SkillModifier")]
 public class SkillModifier : SkillOutput
 {
