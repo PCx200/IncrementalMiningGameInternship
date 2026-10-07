@@ -34,12 +34,6 @@ public class EquipmentInventory : MonoBehaviour
 
     public event Action OnInventoryChanged;
 
-    //TEMP
-    [SerializeField]
-    private EquipmentData equipmentData;
-    [SerializeField]
-    private EquipmentData equipmentData1;
-
     private void Awake()
     {
         for (int i = 0; i < capacity; i++)
@@ -59,13 +53,6 @@ public class EquipmentInventory : MonoBehaviour
 
             items.Add(null);
         }
-    }
-
-    private void Start()
-    {
-        //TEMP
-        TryAdd(new Equipment(equipmentData));
-        TryAdd(new Equipment(equipmentData1));
     }
 
     public bool TryAdd(Equipment equipment)

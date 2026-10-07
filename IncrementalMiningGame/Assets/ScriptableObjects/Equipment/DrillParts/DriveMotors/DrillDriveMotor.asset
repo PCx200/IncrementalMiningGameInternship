@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: DrillDriveMotor
   m_EditorClassIdentifier: Assembly-CSharp::DrillDriveMotor
   Name: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   SlotType: 5
-  AttackDamage: 0
-  AttackSpeed: 0
-  CriticalChance: 0
-  CriticalDamage: 0
-  FuelTankCapacity: 0
-  FuelConsumptionPerSecond: 0
+  EquipmentModifierDefinition:
+    PrimaryModifier:
+      DrillStat: 0
+      ModifierOperation: 0
+      MinValue: 0
+      MaxValue: 0
+    SecondaryModifiers: []
+    SecondaryModifierCountChances: []

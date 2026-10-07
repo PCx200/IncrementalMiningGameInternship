@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DrillGyroModule
   Name: 
   Icon: {fileID: 0}
-  AttackDamage: 0
-  AttackSpeed: 0
-  CriticalChance: 0
-  CriticalDamage: 0
-  FuelTankCapacity: 0
-  FuelConsumptionPerSecond: 0
+  SlotType: 2
+  EquipmentModifierDefinition:
+    PrimaryModifier:
+      DrillStat: 0
+      ModifierOperation: 0
+      MinValue: 0
+      MaxValue: 0
+    SecondaryModifiers: []
+    SecondaryModifierCountChances: []

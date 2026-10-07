@@ -15,12 +15,7 @@ public class Equipment
     {
         this.data = data;
         this.primaryModifier = primaryModifier;
-        this.secondaryModifiers = secondaryModifiers;
-
-        if (secondaryModifiers != null)
-        {
-            this.secondaryModifiers.AddRange(secondaryModifiers);
-        }
+        this.secondaryModifiers.AddRange(secondaryModifiers);
     }
 
     // TEMPORARY CTOR
@@ -28,6 +23,6 @@ public class Equipment
     {
         this.data = data;
 
-        primaryModifier = new DrillStatModifier(data.PrimaryModifier.DrillStat, data.PrimaryModifier.ModifierOperation, data.PrimaryModifier.MaxValue);
+        primaryModifier = new DrillStatModifier(data.EquipmentModifierDefinition.PrimaryModifier.DrillStat, data.EquipmentModifierDefinition.PrimaryModifier.ModifierOperation, data.EquipmentModifierDefinition.PrimaryModifier.MaxValue);
     }
 }
