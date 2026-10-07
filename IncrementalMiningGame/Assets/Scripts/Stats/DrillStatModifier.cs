@@ -1,5 +1,5 @@
 [System.Serializable]
-public class DrillStatModifier
+public struct DrillStatModifier
 {
     public DrillStat Stat;
     public ModifierOperation ModifierOperation;

@@ -19,7 +19,7 @@ public class EquipmentLoadout : MonoBehaviour
 
     private void Start()
     {
-        //drillController = FindFirstObjectByType<DrillController>();
+        drillController = FindFirstObjectByType<DrillController>();
     }
 
     public bool TryEquip(Equipment equipment)
@@ -106,6 +106,32 @@ public class EquipmentLoadout : MonoBehaviour
         return false;
     }
 
+    public Equipment TakeEquipped(SlotType slotType)
+    {
+        foreach (EquipmentSlot slot in equipmentSlots)
+        {
+            if (slot.SlotType != slotType)
+            {
+                continue;
+            }
+
+            Equipment equipment = slot.Unequip();
+
+            if (equipment == null)
+            {
+                return null;
+            }
+
+            RebuildEquipmentModifiers();
+
+            OnLoadoutChanged?.Invoke();
+
+            return equipment;
+        }
+
+        return null;
+    }
+
     private void RebuildEquipmentModifiers()
     {
         List<DrillStatModifier> modifiers = new();
@@ -120,6 +146,11 @@ public class EquipmentLoadout : MonoBehaviour
             }
 
             modifiers.Add(equipment.PrimaryModifier);
+
+            if (equipment.SecondaryModifiers == null)
+            {
+                continue;
+            }
 
             foreach (DrillStatModifier secondaryModifier in equipment.SecondaryModifiers)
             {

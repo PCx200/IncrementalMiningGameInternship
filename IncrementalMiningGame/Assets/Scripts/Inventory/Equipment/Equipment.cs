@@ -22,4 +22,12 @@ public class Equipment
             this.secondaryModifiers.AddRange(secondaryModifiers);
         }
     }
+
+    // TEMPORARY CTOR
+    public Equipment(EquipmentData data)
+    {
+        this.data = data;
+
+        primaryModifier = new DrillStatModifier(data.PrimaryModifier.DrillStat, data.PrimaryModifier.ModifierOperation, data.PrimaryModifier.MaxValue);
+    }
 }
