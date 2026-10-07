@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BlacksmithView : MonoBehaviour
@@ -32,9 +34,9 @@ public class BlacksmithView : MonoBehaviour
 
     public void Open()
     {
-        mainPanel.SetActive(true);
-
         Refresh();
+
+        mainPanel.SetActive(true);
     }
 
     public void Close()
@@ -57,6 +59,7 @@ public class BlacksmithView : MonoBehaviour
 
         RefreshInventory();
     }
+
     private void HandleLoadoutChanged()
     {
         if (!mainPanel.activeSelf)

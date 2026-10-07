@@ -8,7 +8,7 @@ public class Equipment
     private readonly DrillStatModifier primaryModifier;
     public DrillStatModifier PrimaryModifier => primaryModifier;
 
-    private readonly List<DrillStatModifier> secondaryModifiers;
+    private readonly List<DrillStatModifier> secondaryModifiers = new();
     public List<DrillStatModifier> SecondaryModifiers => secondaryModifiers;
 
     public Equipment(EquipmentData data, DrillStatModifier primaryModifier, List<DrillStatModifier> secondaryModifiers)

@@ -34,6 +34,6 @@ public class EquipmentSlotDropTarget : MonoBehaviour, IDropHandler
             return;
         }
 
-        equipmentLoadout.TryEquip(equipment);
+        equipmentLoadout.TryEquip(equipment, equipmentSlot);
     }
 }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 [System.Serializable]
 public class EquipmentModifierDefinition
 {
@@ -5,4 +7,6 @@ public class EquipmentModifierDefinition
     public ModifierOperation ModifierOperation;
     public float MinValue;
     public float MaxValue;
+
+    public List<SecondaryModifierCountChance> SecondaryModifierCountChances;
 }

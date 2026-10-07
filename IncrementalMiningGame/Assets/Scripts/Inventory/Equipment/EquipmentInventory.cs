@@ -68,9 +68,9 @@ public class EquipmentInventory : MonoBehaviour
         TryAdd(new Equipment(equipmentData1));
     }
 
-    public bool TryAdd(Equipment item)
+    public bool TryAdd(Equipment equipment)
     {
-        if (item == null)
+        if (equipment == null)
         {
             return false;
         }
@@ -82,7 +82,7 @@ public class EquipmentInventory : MonoBehaviour
                 continue;
             }
 
-            items[i] = item;
+            items[i] = equipment;
 
             OnInventoryChanged?.Invoke();
 
@@ -92,9 +92,9 @@ public class EquipmentInventory : MonoBehaviour
         return false;
     }
 
-    public bool TryAddAt(Equipment item, int index)
+    public bool TryAddAt(Equipment equipment, int index)
     {
-        if (item == null)
+        if (equipment == null)
         {
             return false;
         }
@@ -109,20 +109,16 @@ public class EquipmentInventory : MonoBehaviour
             return false;
         }
 
-        items[index] = item;
+        items[index] = equipment;
 
         OnInventoryChanged?.Invoke();
 
         return true;
     }
+
     public bool MoveOrSwap(int sourceIndex, int targetIndex)
     {
-        if (sourceIndex < 0 || sourceIndex >= capacity)
-        {
-            return false;
-        }
-
-        if (targetIndex < 0 || targetIndex >= capacity)
+        if (sourceIndex < 0 || sourceIndex >= capacity || targetIndex < 0 || targetIndex >= capacity)
         {
             return false;
         }
@@ -149,14 +145,8 @@ public class EquipmentInventory : MonoBehaviour
         return true;
     }
 
-
     public bool Remove(Equipment item)
     {
-        if (item == null)
-        {
-            return false;
-        }
-
         int index = items.IndexOf(item);
 
         if (index < 0)
@@ -198,15 +188,7 @@ public class EquipmentInventory : MonoBehaviour
 
     public bool IsFull()
     {
-        foreach (Equipment item in items)
-        {
-            if (item == null)
-            {
-                return false;
-            }
-        }
-
-        return true;
+        return capacity == Count;
     }
 
     public void Clear()

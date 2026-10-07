@@ -25,17 +25,17 @@ public class DrillStatManager
 
     public void SetModifiers(DrillModifierSource source, IEnumerable<DrillStatModifier> newModifiers)
     {
-        if (!modifiers.TryGetValue(source, out List<DrillStatModifier> list))
+        if (!modifiers.ContainsKey(source))
         {
-            list = new List<DrillStatModifier>();
-            modifiers[source] = list;
+            modifiers[source] = new List<DrillStatModifier>();
         }
 
-        list.Clear();
+        modifiers[source].Clear();
+
 
         if (newModifiers != null)
         {
-            list.AddRange(newModifiers);
+            modifiers[source].AddRange(newModifiers);
         }
 
         Recalculate();
@@ -45,12 +45,12 @@ public class DrillStatManager
 
     public void ClearModifiers(DrillModifierSource source)
     {
-        if (!modifiers.TryGetValue(source, out List<DrillStatModifier> list))
+        if (!modifiers.ContainsKey(source))
         {
             return;
         }
 
-        list.Clear();
+        modifiers[source].Clear();
 
         Recalculate();
 
@@ -72,25 +72,16 @@ public class DrillStatManager
                         continue;
                     }
 
-                    if (modifier.ModifierOperation == ModifierOperation.Add)
+                    switch (modifier.ModifierOperation)
                     {
-                        value += modifier.Value;
-                    }
-                }
-            }
-
-            foreach (var source in modifiers.Values)
-            {
-                foreach (DrillStatModifier modifier in source)
-                {
-                    if (modifier.Stat != stat)
-                    {
-                        continue;
-                    }
-
-                    if (modifier.ModifierOperation == ModifierOperation.Multiply)
-                    {
-                        value *= 1f + modifier.Value;
+                        case ModifierOperation.Add:
+                            value += modifier.Value;
+                            break;
+                        case ModifierOperation.Multiply:
+                            value *= 1f + modifier.Value;
+                            break;
+                        default:
+                            break;
                     }
                 }
             }

@@ -40,11 +40,6 @@ public class EquipmentInventoryDropTarget : MonoBehaviour, IDropHandler
             return;
         }
 
-        if (sourceLoadoutSlot.EquippedItem == null)
-        {
-            return;
-        }
-
         if (equipmentInventory.GetItem(inventoryIndex) != null)
         {
             return;

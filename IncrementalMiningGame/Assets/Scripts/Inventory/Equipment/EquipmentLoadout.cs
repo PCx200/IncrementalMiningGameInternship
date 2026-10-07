@@ -22,9 +22,9 @@ public class EquipmentLoadout : MonoBehaviour
         drillController = FindFirstObjectByType<DrillController>();
     }
 
-    public bool TryEquip(Equipment equipment)
+    public bool TryEquip(Equipment equipment, EquipmentSlot slot)
     {
-        if (equipment == null || equipment.Data == null)
+        if (equipment == null || slot == null)
         {
             return false;
         }
@@ -34,38 +34,25 @@ public class EquipmentLoadout : MonoBehaviour
             return false;
         }
 
-        foreach (EquipmentSlot slot in equipmentSlots)
+        Equipment previouslyEquipped = slot.EquippedItem;
+
+        if (!slot.TryEquip(equipment))
         {
-            if (slot.SlotType != equipment.Data.SlotType)
-            {
-                continue;
-            }
-
-            Equipment previouslyEquipped = slot.EquippedItem;
-
-            if (!slot.TryEquip(equipment))
-            {
-                return false;
-            }
-
-            if (!equipmentInventory.Remove(equipment))
-            {
-                return false;
-            }
-
-            if (previouslyEquipped != null)
-            {
-                equipmentInventory.TryAdd(previouslyEquipped);
-            }
-
-            RebuildEquipmentModifiers();
-
-            OnLoadoutChanged?.Invoke();
-
-            return true;
+            return false;
         }
 
-        return false;
+        equipmentInventory.Remove(equipment);
+
+        if (previouslyEquipped != null)
+        {
+            equipmentInventory.TryAdd(previouslyEquipped);
+        }
+
+        RebuildEquipmentModifiers();
+
+        OnLoadoutChanged?.Invoke();
+
+        return true;
     }
 
     public bool Unequip(SlotType slotType)
@@ -84,17 +71,8 @@ public class EquipmentLoadout : MonoBehaviour
                 return false;
             }
 
-            if (equipmentInventory.IsFull())
-            {
-                return false;
-            }
-
             slot.Unequip();
-
-            if (!equipmentInventory.TryAdd(equipment))
-            {
-                return false;
-            }
+            equipmentInventory.TryAdd(equipment);
 
             RebuildEquipmentModifiers();
 
@@ -147,15 +125,7 @@ public class EquipmentLoadout : MonoBehaviour
 
             modifiers.Add(equipment.PrimaryModifier);
 
-            if (equipment.SecondaryModifiers == null)
-            {
-                continue;
-            }
-
-            foreach (DrillStatModifier secondaryModifier in equipment.SecondaryModifiers)
-            {
-                modifiers.Add(secondaryModifier);
-            }
+            modifiers.AddRange(equipment.SecondaryModifiers);
         }
 
         drillController.DrillStatManager.SetModifiers(DrillModifierSource.Equipment, modifiers);

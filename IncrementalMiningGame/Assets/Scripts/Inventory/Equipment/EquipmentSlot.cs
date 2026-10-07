@@ -16,11 +16,6 @@ public class EquipmentSlot : MonoBehaviour
             return false;
         }
 
-        if (item.Data.SlotType != slotType)
-        {
-            return false;
-        }
-
         equippedItem = item;
 
         return true;
