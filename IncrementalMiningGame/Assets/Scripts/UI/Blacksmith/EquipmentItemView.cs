@@ -1,19 +1,30 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class EquipmentItemView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class EquipmentItemView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField]
-    private Image itemIcon;
-
     private Equipment equipment;
     public Equipment Equipment => equipment;
+
+    [SerializeField]
+    private Image itemIcon;
 
     private GameObject dragIcon;
 
     [SerializeField]
     private RectTransform dragLayer;
+
+    [Header("Descriptions")]
+    [SerializeField]
+    private EquipmentDescriptionView equipmentDescriptionView;
+
+    private void Awake()
+    {
+        Clear();
+    }
 
     public void SetEquipment(Equipment newEquipment)
     {
@@ -85,5 +96,25 @@ public class EquipmentItemView : MonoBehaviour, IBeginDragHandler, IDragHandler,
             Destroy(dragIcon);
             dragIcon = null;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (equipment == null)
+        {
+            return;
+        }
+
+        equipmentDescriptionView.Show(equipment);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (equipment == null)
+        {
+            return;
+        }
+
+        equipmentDescriptionView.Hide();
     }
 }
