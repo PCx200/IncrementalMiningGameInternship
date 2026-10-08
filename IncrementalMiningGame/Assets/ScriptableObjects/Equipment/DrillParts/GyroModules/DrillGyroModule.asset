@@ -12,14 +12,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0bdc0418583f79428375679478ffcdb, type: 3}
   m_Name: DrillGyroModule
   m_EditorClassIdentifier: Assembly-CSharp::DrillGyroModule
-  Name: 
+  Name: Gyro Module
   Icon: {fileID: 0}
   SlotType: 2
   EquipmentModifierDefinition:
     PrimaryModifier:
-      DrillStat: 0
+      DrillStat: 2
+      ModifierOperation: 1
+      MinValue: 0.05
+      MaxValue: 0.2
+    SecondaryModifiers:
+    - DrillStat: 0
       ModifierOperation: 0
-      MinValue: 0
-      MaxValue: 0
-    SecondaryModifiers: []
-    SecondaryModifierCountChances: []
+      MinValue: 1
+      MaxValue: 4
+    - DrillStat: 1
+      ModifierOperation: 1
+      MinValue: 0.01
+      MaxValue: 0.03
+    - DrillStat: 2
+      ModifierOperation: 1
+      MinValue: 0.03
+      MaxValue: 0.12
+    - DrillStat: 3
+      ModifierOperation: 1
+      MinValue: 0.01
+      MaxValue: 0.03
+    - DrillStat: 4
+      ModifierOperation: 0
+      MinValue: 150
+      MaxValue: 400
+    - DrillStat: 5
+      ModifierOperation: 1
+      MinValue: 0.01
+      MaxValue: 0.03
+    SecondaryModifierCountChances:
+    - Count: 0
+      Weight: 50
+    - Count: 1
+      Weight: 20
+    - Count: 2
+      Weight: 15
+    - Count: 3
+      Weight: 8
+    - Count: 4
+      Weight: 4
+    - Count: 5
+      Weight: 3

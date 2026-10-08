@@ -12,11 +12,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c96b730a8581e594b8e6478ce81cf93c, type: 3}
   m_Name: DrillImpactAmplifier
   m_EditorClassIdentifier: Assembly-CSharp::DrillImpactAmplifier
-  Name: 
+  Name: Impact Amplifier
   Icon: {fileID: 0}
-  AttackDamage: 0
-  AttackSpeed: 0
-  CriticalChance: 0
-  CriticalDamage: 0
-  FuelTankCapacity: 0
-  FuelConsumptionPerSecond: 0
+  SlotType: 0
+  EquipmentModifierDefinition:
+    PrimaryModifier:
+      DrillStat: 3
+      ModifierOperation: 1
+      MinValue: 0.2
+      MaxValue: 0.75
+    SecondaryModifiers:
+    - DrillStat: 0
+      ModifierOperation: 0
+      MinValue: 1
+      MaxValue: 4
+    - DrillStat: 1
+      ModifierOperation: 1
+      MinValue: 0.01
+      MaxValue: 0.03
+    - DrillStat: 2
+      ModifierOperation: 1
+      MinValue: 0.005
+      MaxValue: 0.015
+    - DrillStat: 3
+      ModifierOperation: 1
+      MinValue: 0.15
+      MaxValue: 0.4
+    - DrillStat: 4
+      ModifierOperation: 0
+      MinValue: 150
+      MaxValue: 400
+    - DrillStat: 5
+      ModifierOperation: 1
+      MinValue: 0.01
+      MaxValue: 0.03
+    SecondaryModifierCountChances:
+    - Count: 0
+      Weight: 50
+    - Count: 1
+      Weight: 20
+    - Count: 2
+      Weight: 15
+    - Count: 3
+      Weight: 8
+    - Count: 4
+      Weight: 4
+    - Count: 5
+      Weight: 3

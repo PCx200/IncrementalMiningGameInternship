@@ -37,8 +37,7 @@ public class EquipmentDescriptionView : MonoBehaviour
         {
             if (combinedStats.ContainsKey(modifier.Stat))
             {
-                DrillStatModifier currentModifier =
-                    combinedStats[modifier.Stat];
+                DrillStatModifier currentModifier = combinedStats[modifier.Stat];
 
                 currentModifier.Value += modifier.Value;
 
@@ -52,10 +51,7 @@ public class EquipmentDescriptionView : MonoBehaviour
 
         for (int i = 0; i < statOrder.Length; i++)
         {
-            TextMeshProUGUI statText =
-                itemStatsTexts.transform
-                    .GetChild(i)
-                    .GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI statText = itemStatsTexts.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
 
             DrillStat stat = statOrder[i];
 
@@ -69,13 +65,11 @@ public class EquipmentDescriptionView : MonoBehaviour
 
             if (modifier.ModifierOperation == ModifierOperation.Multiply)
             {
-                statText.text =
-                    $"{modifier.Value * 100f:0.###}%";
+                statText.text = $"{modifier.Value * 100f:0.#}%";
             }
             else
             {
-                statText.text =
-                    $"{modifier.Value:0.###}";
+                statText.text = $"{modifier.Value:0.#}";
             }
         }
 

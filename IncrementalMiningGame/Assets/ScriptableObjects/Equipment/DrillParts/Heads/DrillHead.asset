@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cff6e72e8654d40b4ede81dcf10ff5, type: 3}
   m_Name: DrillHead
   m_EditorClassIdentifier: Assembly-CSharp::DrillHead
-  Name: MAMAMIATEST
+  Name: Head
   Icon: {fileID: 21300000, guid: 169287b7ac4aaf54f8731d404f67ade6, type: 3}
   SlotType: 1
   EquipmentModifierDefinition:
@@ -40,10 +40,10 @@ MonoBehaviour:
       MaxValue: 0.03
     - DrillStat: 4
       ModifierOperation: 0
-      MinValue: 50
-      MaxValue: 120
+      MinValue: 150
+      MaxValue: 400
     - DrillStat: 5
-      ModifierOperation: 0
+      ModifierOperation: 1
       MinValue: 0.01
       MaxValue: 0.03
     SecondaryModifierCountChances:
