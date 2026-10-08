@@ -19,6 +19,10 @@ public class EquipmentItemView : MonoBehaviour, IBeginDragHandler, IDragHandler,
     [SerializeField]
     private EquipmentDescriptionView equipmentDescriptionView;
 
+    [Header("Scrap Bin")]
+    [SerializeField]
+    private ScrapBinView scrapBinView;
+
     private void Awake()
     {
         Clear();
@@ -75,6 +79,8 @@ public class EquipmentItemView : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
         CanvasGroup canvasGroup = dragIcon.GetComponent<CanvasGroup>();
         canvasGroup.blocksRaycasts = false;
+
+        scrapBinView.Show();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -94,6 +100,8 @@ public class EquipmentItemView : MonoBehaviour, IBeginDragHandler, IDragHandler,
             Destroy(dragIcon);
             dragIcon = null;
         }
+
+        scrapBinView.Hide();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
