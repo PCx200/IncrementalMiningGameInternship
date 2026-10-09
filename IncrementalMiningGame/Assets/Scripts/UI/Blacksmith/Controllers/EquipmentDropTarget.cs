@@ -6,15 +6,15 @@ public class EquipmentDropTarget : MonoBehaviour, IDropHandler
     [SerializeField]
     private EquipmentManager equipmentManager;
 
-    private EquipmentSlot equipmentSlot;
-
     private int inventoryIndex = -1;
 
     public int InventoryIndex => inventoryIndex;
 
+    private EquipmentSlot equipmentSlot;
+
     private void Awake()
     {
-        equipmentSlot = GetComponent<EquipmentSlot>();
+        equipmentSlot = GetComponentInParent<EquipmentSlot>();
     }
 
     public void Initialize(int index)
@@ -43,55 +43,37 @@ public class EquipmentDropTarget : MonoBehaviour, IDropHandler
             return;
         }
 
+        // INVENTORY -> LOADOUT
         if (equipmentSlot != null)
         {
-            DropOnLoadout(equipment);
+            if (equipment.Data.SlotType != equipmentSlot.SlotType)
+            {
+                return;
+            }
+
+            equipmentManager.TryEquip(equipment, equipmentSlot);
+
             return;
         }
 
-        DropOnInventory(eventData);
-    }
+        // LOADOUT -> INVENTORY
+        EquipmentSlot sourceLoadoutSlot = eventData.pointerDrag.GetComponentInParent<EquipmentSlot>();
 
-    private void DropOnLoadout(Equipment equipment)
-    {
-        if (equipment.Data.SlotType != equipmentSlot.SlotType)
+        if (sourceLoadoutSlot != null)
         {
+            equipmentManager.MoveEquippedToInventory(sourceLoadoutSlot, inventoryIndex);
+
             return;
         }
 
-        equipmentManager.TryEquip(equipment, equipmentSlot);
-    }
-
-    private void DropOnInventory(PointerEventData eventData)
-    {
+        // INVENTORY -> INVENTORY
         EquipmentDropTarget sourceInventorySlot = eventData.pointerDrag.GetComponent<EquipmentDropTarget>();
 
-        if (sourceInventorySlot != null && sourceInventorySlot.InventoryIndex >= 0)
-        {
-            equipmentManager.MoveOrSwap(sourceInventorySlot.InventoryIndex, inventoryIndex);
-
-            return;
-        }
-
-        EquipmentSlot sourceLoadoutSlot = eventData.pointerDrag.GetComponent<EquipmentSlot>();
-
-        if (sourceLoadoutSlot == null)
+        if (sourceInventorySlot == null)
         {
             return;
         }
 
-        if (equipmentManager.GetItem(inventoryIndex) != null)
-        {
-            return;
-        }
-
-        Equipment equipment = equipmentManager.TakeEquipped(sourceLoadoutSlot.SlotType);
-
-        if (equipment == null)
-        {
-            return;
-        }
-
-        equipmentManager.TryAddAt(equipment, inventoryIndex);
+        equipmentManager.MoveOrSwap(sourceInventorySlot.InventoryIndex, inventoryIndex);
     }
 }

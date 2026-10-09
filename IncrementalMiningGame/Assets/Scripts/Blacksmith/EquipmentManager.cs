@@ -13,11 +13,8 @@ public class EquipmentManager : MonoBehaviour
     private readonly List<Equipment> items = new();
     public IReadOnlyList<Equipment> Items => items;
 
-    private readonly List<EquipmentItemView> itemViews = new();
-    public IReadOnlyList<EquipmentItemView> ItemViews => itemViews;
-
     [SerializeField]
-    private Transform inventorySlotTransform;
+    private InventorySlotManager inventorySlotManager;
 
     [Header("Loadout")]
     [SerializeField]
@@ -49,21 +46,10 @@ public class EquipmentManager : MonoBehaviour
 
     private void Awake()
     {
-        for (int i = 0; i < capacity; i++)
+        inventorySlotManager.Initialize();
+
+        for (int i = 0; i < inventorySlotManager.InventorySlotCount; i++)
         {
-            Transform inventorySlot = inventorySlotTransform.GetChild(i);
-
-            EquipmentItemView itemView = inventorySlot.GetComponent<EquipmentItemView>();
-
-            itemViews.Add(itemView);
-
-            EquipmentDropTarget dropTarget = inventorySlot.GetComponent<EquipmentDropTarget>();
-
-            if (dropTarget != null)
-            {
-                dropTarget.Initialize(i);
-            }
-
             items.Add(null);
         }
     }
@@ -173,6 +159,55 @@ public class EquipmentManager : MonoBehaviour
         return true;
     }
 
+    public bool MoveEquippedToInventory(EquipmentSlot sourceSlot, int inventoryIndex)
+    {
+        if (sourceSlot == null)
+        {
+            return false;
+        }
+
+        if (inventoryIndex < 0 || inventoryIndex >= Capacity)
+        {
+            return false;
+        }
+
+        Equipment equippedEquipment = sourceSlot.EquippedItem;
+
+        if (equippedEquipment == null)
+        {
+            return false;
+        }
+
+        Equipment inventoryEquipment = items[inventoryIndex];
+
+        if (inventoryEquipment != null)
+        {
+            if (inventoryEquipment.Data.SlotType != sourceSlot.SlotType)
+            {
+                return false;
+            }
+
+            if (!sourceSlot.TryEquip(inventoryEquipment))
+            {
+                return false;
+            }
+
+            items[inventoryIndex] = equippedEquipment;
+        }
+        else
+        {
+            sourceSlot.Unequip();
+
+            items[inventoryIndex] = equippedEquipment;
+        }
+
+        RebuildEquipmentModifiers();
+
+        OnEquipmentChanged?.Invoke();
+
+        return true;
+    }
+
     public bool Remove(Equipment equipment)
     {
         int index = items.IndexOf(equipment);
@@ -206,12 +241,12 @@ public class EquipmentManager : MonoBehaviour
 
     public EquipmentItemView GetItemView(int index)
     {
-        if (index < 0 || index >= itemViews.Count)
+        if (index < 0 || index >= Capacity)
         {
             return null;
         }
 
-        return itemViews[index];
+        return inventorySlotManager.GetInventoryItemViewByIndex(index);
     }
 
     public bool IsFull()
