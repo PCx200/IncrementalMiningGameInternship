@@ -7,6 +7,9 @@ public class DrillController : MonoBehaviour
     private DrillData data;
     public DrillData Data => data;
 
+    private DrillStatManager drillStatManager;
+    public DrillStatManager DrillStatManager => drillStatManager;
+
     [SerializeField]
     private float currentFuel;
     public float CurrentFuel => currentFuel;
@@ -19,11 +22,19 @@ public class DrillController : MonoBehaviour
     [SerializeField]
     private BlockDamagedChannel blockDamagedPenaltyChannel;
 
+    private void Awake()
+    {
+        drillStatManager = new DrillStatManager(data);
+
+        drillStatManager.OnStatsChanged += HandleStatsChanged;
+    }
+
     private void Start()
     {
-        currentFuel = data.FuelTankCapacity;
+        currentFuel = drillStatManager.GetValue(DrillStat.FuelTankCapacity);
 
-        RoundManager.Instance.RegisterDrill(this);
+
+        DrillRegistry.Instance.Register(this);
     }
 
     private void Update()
@@ -41,11 +52,25 @@ public class DrillController : MonoBehaviour
     {
         blockDamagedChannel.Raised -= DrainFuelAfterMining;
         blockDamagedPenaltyChannel.Raised -= DrainFuelAfterMining;
+
+
+    }
+
+    private void OnDestroy()
+    {
+        drillStatManager.OnStatsChanged -= HandleStatsChanged;
+
+        if (DrillRegistry.Instance != null)
+        {
+            DrillRegistry.Instance.Unregister(this);
+        }
     }
 
     private void DrainFuel()
     {
-        currentFuel -= data.FuelConsumptionPerSecond * Time.deltaTime;
+        float fuelConsumption = drillStatManager.GetValue(DrillStat.FuelConsumptionPerSecond);
+
+        currentFuel -= fuelConsumption * Time.deltaTime;
 
         CheckTankEmpty();
     }
@@ -63,6 +88,16 @@ public class DrillController : MonoBehaviour
         {
             currentFuel = 0f;
             OnTankEmpty?.Invoke();
+        }
+    }
+
+    private void HandleStatsChanged()
+    {
+        float maximumFuel = drillStatManager.GetValue(DrillStat.FuelTankCapacity);
+
+        if (currentFuel > maximumFuel)
+        {
+            currentFuel = maximumFuel;
         }
     }
 }

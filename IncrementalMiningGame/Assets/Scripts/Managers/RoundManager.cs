@@ -28,25 +28,38 @@ public class RoundManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void RegisterDrill(DrillController newDrill)
+    private void OnEnable()
     {
-        hasRoundEnded = false;
+        DrillRegistry.Instance.OnDrillRegistered += RegisterDrill;
 
+        if (DrillRegistry.Instance.CurrentDrill != null)
+        {
+            RegisterDrill(DrillRegistry.Instance.CurrentDrill);
+        }
+    }
+
+    private void OnDisable()
+    {
+        DrillRegistry.Instance.OnDrillRegistered -= RegisterDrill;
+
+        if (drill != null)
+        {
+            drill.OnTankEmpty -= EndRound;
+        }
+    }
+
+    private void RegisterDrill(DrillController newDrill)
+    {
         if (drill != null)
         {
             drill.OnTankEmpty -= EndRound;
         }
 
         drill = newDrill;
-        drill.OnTankEmpty += EndRound;
-    }
 
-    private void OnDisable()
-    {
-        if (drill != null)
-        {
-            drill.OnTankEmpty -= EndRound;
-        }
+        drill.OnTankEmpty += EndRound;
+
+        hasRoundEnded = false;
     }
 
     private void EndRound()
