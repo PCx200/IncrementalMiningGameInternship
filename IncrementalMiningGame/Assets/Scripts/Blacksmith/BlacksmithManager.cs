@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class BlacksmithManager : MonoBehaviour
 {
+    [Header("Economy")]
+    [SerializeField]
+    private CurrencyData forgeCurrency;
+
+    [SerializeField]
+    private int forgeCost;
+    public int ForgeCost => forgeCost;
+
+    [Header("Management")]
     [SerializeField]
     private EquipmentManager equipmentManager;
 
@@ -28,6 +37,16 @@ public class BlacksmithManager : MonoBehaviour
         }
 
         if (equipmentManager.IsFull())
+        {
+            return;
+        }
+
+        if (equipmentDataPool.Count == 0)
+        {
+            return;
+        }
+
+        if (!EconomyManager.Instance.TrySpendCurrency(forgeCurrency, forgeCost))
         {
             return;
         }

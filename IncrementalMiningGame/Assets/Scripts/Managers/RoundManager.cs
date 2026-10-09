@@ -28,7 +28,7 @@ public class RoundManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void OnEnable()
+    private void Start()
     {
         DrillRegistry.Instance.OnDrillRegistered += RegisterDrill;
 
