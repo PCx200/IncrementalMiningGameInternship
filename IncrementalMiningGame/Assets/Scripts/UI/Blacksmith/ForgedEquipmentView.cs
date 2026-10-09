@@ -29,7 +29,6 @@ public class ForgedEquipmentView : MonoBehaviour, IPointerEnterHandler, IPointer
     public void Clear()
     {
         equipment = null;
-        itemImage.sprite = null;
         itemImage.enabled = false;
 
         equipmentDescriptionView.Hide();

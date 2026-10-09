@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 5351605696036553118}
   - component: {fileID: 6685007248828407926}
   - component: {fileID: 3747869120337698142}
+  - component: {fileID: 1827755940374486445}
   m_Layer: 5
   m_Name: EquipmentSlot
   m_TagString: Untagged
@@ -174,6 +175,7 @@ MonoBehaviour:
   itemIcon: {fileID: 8319506607393831995}
   dragLayer: {fileID: 0}
   equipmentDescriptionView: {fileID: 3747869120337698142}
+  scrapBinView: {fileID: 0}
 --- !u!114 &3747869120337698142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +191,19 @@ MonoBehaviour:
   descriptionPanel: {fileID: 4222622403022908748}
   itemName: {fileID: 3596256987968056907}
   itemStatsTexts: {fileID: 7420256487509511908}
+--- !u!114 &1827755940374486445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1587700318102679782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8642aba4c2e9567499704c74b43e7857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentDropTarget
+  equipmentManager: {fileID: 0}
 --- !u!1 &1628306054069360720
 GameObject:
   m_ObjectHideFlags: 0

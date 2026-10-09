@@ -5,10 +5,7 @@ using UnityEngine.EventSystems;
 public class ScrapBinDropTarget : MonoBehaviour, IDropHandler
 {
     [SerializeField]
-    private EquipmentInventory equipmentInventory;
-
-    [SerializeField]
-    private EquipmentLoadout equipmentLoadout;
+    private EquipmentManager equipmentManager;
 
     public event Action<Equipment> OnEquipmentScrapped;
 
@@ -26,35 +23,36 @@ public class ScrapBinDropTarget : MonoBehaviour, IDropHandler
             return;
         }
 
-        Equipment scrappedEquipment = null;
-
-        EquipmentInventoryDropTarget inventorySlot = eventData.pointerDrag.GetComponent<EquipmentInventoryDropTarget>();
-
-        if (inventorySlot != null)
-        {
-            scrappedEquipment = draggedItemView.Equipment;
-
-            if (!equipmentInventory.Remove(scrappedEquipment))
-            {
-                return;
-            }
-
-            OnEquipmentScrapped?.Invoke(scrappedEquipment);
-            return;
-        }
+        Equipment equipment = draggedItemView.Equipment;
 
         EquipmentSlot loadoutSlot = eventData.pointerDrag.GetComponent<EquipmentSlot>();
 
         if (loadoutSlot != null)
         {
-            scrappedEquipment = equipmentLoadout.TakeEquipped(loadoutSlot.SlotType);
+            equipment = equipmentManager.TakeEquipped(loadoutSlot.SlotType);
 
-            if (scrappedEquipment == null)
+            if (equipment == null)
             {
                 return;
             }
 
-            OnEquipmentScrapped?.Invoke(scrappedEquipment);
+            OnEquipmentScrapped?.Invoke(equipment);
+
+            return;
         }
+
+        EquipmentDropTarget inventorySlot = eventData.pointerDrag.GetComponent<EquipmentDropTarget>();
+
+        if (inventorySlot == null)
+        {
+            return;
+        }
+
+        if (!equipmentManager.Remove(equipment))
+        {
+            return;
+        }
+
+        OnEquipmentScrapped?.Invoke(equipment);
     }
 }

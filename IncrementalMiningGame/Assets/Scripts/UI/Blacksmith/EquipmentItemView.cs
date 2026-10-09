@@ -28,9 +28,9 @@ public class EquipmentItemView : MonoBehaviour, IBeginDragHandler, IDragHandler,
         Clear();
     }
 
-    public void SetEquipment(Equipment newEquipment)
+    public void SetEquipment(Equipment equipment)
     {
-        equipment = newEquipment;
+        this.equipment = equipment;
 
         Refresh();
     }

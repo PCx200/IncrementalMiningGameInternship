@@ -5,7 +5,7 @@ using UnityEngine;
 public class BlacksmithManager : MonoBehaviour
 {
     [SerializeField]
-    private EquipmentInventory equipmentInventory;
+    private EquipmentManager equipmentManager;
 
     [SerializeField]
     private List<EquipmentData> equipmentDataPool;
@@ -17,6 +17,7 @@ public class BlacksmithManager : MonoBehaviour
     private float forgeDisplayDuration;
 
     private Equipment forgedEquipment;
+
     private bool isForging;
 
     public void ForgeEquipment()
@@ -26,12 +27,12 @@ public class BlacksmithManager : MonoBehaviour
             return;
         }
 
-        if (equipmentInventory.IsFull())
+        if (equipmentManager.IsFull())
         {
             return;
         }
 
-        int randomEquipmentIndex = Random.Range(0, equipmentDataPool.Count);
+        int randomEquipmentIndex = Seed.RandomINT(0, equipmentDataPool.Count);
 
         EquipmentData pickedEquipmentData = equipmentDataPool[randomEquipmentIndex];
 
@@ -48,7 +49,7 @@ public class BlacksmithManager : MonoBehaviour
     {
         yield return new WaitForSeconds(forgeDisplayDuration);
 
-        equipmentInventory.TryAdd(forgedEquipment);
+        equipmentManager.TryAdd(forgedEquipment);
 
         forgedEquipment = null;
 

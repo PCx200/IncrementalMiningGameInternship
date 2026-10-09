@@ -4,10 +4,7 @@ public class BlacksmithView : MonoBehaviour
 {
     [Header("Data")]
     [SerializeField]
-    private EquipmentInventory equipmentInventory;
-
-    [SerializeField]
-    private EquipmentLoadout equipmentLoadout;
+    private EquipmentManager equipmentManager;
 
     [Header("UI")]
     [SerializeField]
@@ -20,14 +17,12 @@ public class BlacksmithView : MonoBehaviour
 
     private void OnEnable()
     {
-        equipmentInventory.OnInventoryChanged += HandleInventoryChanged;
-        equipmentLoadout.OnLoadoutChanged += HandleLoadoutChanged;
+        equipmentManager.OnEquipmentChanged += Refresh;
     }
 
     private void OnDisable()
     {
-        equipmentInventory.OnInventoryChanged -= HandleInventoryChanged;
-        equipmentLoadout.OnLoadoutChanged -= HandleLoadoutChanged;
+        equipmentManager.OnEquipmentChanged -= Refresh;
     }
 
     public void Open()
@@ -48,69 +43,23 @@ public class BlacksmithView : MonoBehaviour
         RefreshLoadout();
     }
 
-    private void HandleInventoryChanged()
-    {
-        if (!mainPanel.activeSelf)
-        {
-            return;
-        }
-
-        RefreshInventory();
-    }
-
-    private void HandleLoadoutChanged()
-    {
-        if (!mainPanel.activeSelf)
-        {
-            return;
-        }
-
-        RefreshLoadout();
-    }
-
     private void RefreshInventory()
     {
-        for (int i = 0; i < equipmentInventory.Capacity; i++)
+        for (int i = 0; i < equipmentManager.Capacity; i++)
         {
-            EquipmentItemView itemView = equipmentInventory.GetItemView(i);
+            EquipmentItemView itemView = equipmentManager.GetItemView(i);
 
-            if (itemView == null)
-            {
-                continue;
-            }
-
-            Equipment equipment = equipmentInventory.GetItem(i);
-
-            if (equipment == null)
-            {
-                itemView.Clear();
-                continue;
-            }
-
-            itemView.SetEquipment(equipment);
+            itemView.SetEquipment(equipmentManager.GetItem(i));
         }
     }
 
     private void RefreshLoadout()
     {
-        foreach (EquipmentSlot slot in equipmentLoadout.EquipmentSlots)
+        foreach (EquipmentSlot slot in equipmentManager.EquipmentSlots)
         {
             EquipmentItemView itemView = slot.GetComponent<EquipmentItemView>();
 
-            if (itemView == null)
-            {
-                continue;
-            }
-
-            Equipment equipment = slot.EquippedItem;
-
-            if (equipment == null)
-            {
-                itemView.Clear();
-                continue;
-            }
-
-            itemView.SetEquipment(equipment);
+            itemView.SetEquipment(slot.EquippedItem);
         }
     }
 }

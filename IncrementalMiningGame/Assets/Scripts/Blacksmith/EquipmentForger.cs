@@ -31,8 +31,9 @@ public static class EquipmentForager
 
             EquipmentStatDefinition pickedStatDefinition = equipmentModifierDefinition.SecondaryModifiers[randomStatIndex];
 
-            float statValue = Random.Range(pickedStatDefinition.MinValue, pickedStatDefinition.MaxValue);
-            statValue = (float)System.Math.Round(statValue, 4);
+            float statValue = Seed.RandomFLOAT(pickedStatDefinition.MinValue, pickedStatDefinition.MaxValue);
+            byte decimalPlaces = 4;
+            statValue = (float)System.Math.Round(statValue, decimalPlaces);
 
             DrillStatModifier modifier = new DrillStatModifier(pickedStatDefinition.DrillStat, pickedStatDefinition.ModifierOperation, statValue);
 
@@ -44,8 +45,9 @@ public static class EquipmentForager
 
     private static DrillStatModifier RollPrimaryModifier(EquipmentStatDefinition primaryModifier)
     {
-        float statValue = Random.Range(primaryModifier.MinValue, primaryModifier.MaxValue);
-        statValue = (float)System.Math.Round(statValue, 4);
+        float statValue = Seed.RandomFLOAT(primaryModifier.MinValue, primaryModifier.MaxValue);
+        byte decimalPlaces = 4;
+        statValue = (float)System.Math.Round(statValue, decimalPlaces);
 
         return new DrillStatModifier(primaryModifier.DrillStat, primaryModifier.ModifierOperation, statValue);
     }
@@ -59,7 +61,7 @@ public static class EquipmentForager
             totalWeight += chance.Weight;
         }
 
-        float roll = Random.Range(0f, totalWeight);
+        float roll = Seed.RandomFLOAT(0f, totalWeight);
 
         float accumulatedWeight = 0f;
 
