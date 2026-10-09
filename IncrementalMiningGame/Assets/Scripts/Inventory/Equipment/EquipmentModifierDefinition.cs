@@ -3,10 +3,9 @@ using System.Collections.Generic;
 [System.Serializable]
 public class EquipmentModifierDefinition
 {
-    public DrillStat DrillStat;
-    public ModifierOperation ModifierOperation;
-    public float MinValue;
-    public float MaxValue;
+    public EquipmentStatDefinition PrimaryModifier;
+
+    public List<EquipmentStatDefinition> SecondaryModifiers;
 
     public List<SecondaryModifierCountChance> SecondaryModifierCountChances;
 }

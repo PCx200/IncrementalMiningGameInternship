@@ -2,22 +2,35 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class EquipmentItemView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class EquipmentItemView : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField]
-    private Image itemIcon;
-
     private Equipment equipment;
     public Equipment Equipment => equipment;
+
+    [SerializeField]
+    private Image itemIcon;
 
     private GameObject dragIcon;
 
     [SerializeField]
     private RectTransform dragLayer;
 
-    public void SetEquipment(Equipment newEquipment)
+    [Header("Descriptions")]
+    [SerializeField]
+    private EquipmentDescriptionView equipmentDescriptionView;
+
+    [Header("Scrap Bin")]
+    [SerializeField]
+    private ScrapBinView scrapBinView;
+
+    private void Awake()
     {
-        equipment = newEquipment;
+        Clear();
+    }
+
+    public void SetEquipment(Equipment equipment)
+    {
+        this.equipment = equipment;
 
         Refresh();
     }
@@ -66,6 +79,8 @@ public class EquipmentItemView : MonoBehaviour, IBeginDragHandler, IDragHandler,
 
         CanvasGroup canvasGroup = dragIcon.GetComponent<CanvasGroup>();
         canvasGroup.blocksRaycasts = false;
+
+        scrapBinView.Show();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -85,5 +100,27 @@ public class EquipmentItemView : MonoBehaviour, IBeginDragHandler, IDragHandler,
             Destroy(dragIcon);
             dragIcon = null;
         }
+
+        scrapBinView.Hide();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (equipment == null)
+        {
+            return;
+        }
+
+        equipmentDescriptionView.Show(equipment);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (equipment == null)
+        {
+            return;
+        }
+
+        equipmentDescriptionView.Hide();
     }
 }

@@ -34,7 +34,7 @@ public class DrillController : MonoBehaviour
         currentFuel = drillStatManager.GetValue(DrillStat.FuelTankCapacity);
 
 
-        RoundManager.Instance.RegisterDrill(this);
+        DrillRegistry.Instance.Register(this);
     }
 
     private void Update()
@@ -59,6 +59,11 @@ public class DrillController : MonoBehaviour
     private void OnDestroy()
     {
         drillStatManager.OnStatsChanged -= HandleStatsChanged;
+
+        if (DrillRegistry.Instance != null)
+        {
+            DrillRegistry.Instance.Unregister(this);
+        }
     }
 
     private void DrainFuel()

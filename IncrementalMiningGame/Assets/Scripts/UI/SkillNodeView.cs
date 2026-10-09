@@ -15,7 +15,6 @@ public class SkillNodeView : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     [SerializeField] private Transform descriptionsContainer;
 
-
     [Header("Connections")]
     [SerializeField]
     private RectTransform line;

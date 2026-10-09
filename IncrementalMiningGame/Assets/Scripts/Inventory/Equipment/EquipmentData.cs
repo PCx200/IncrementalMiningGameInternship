@@ -11,9 +11,6 @@ public abstract class EquipmentData : ScriptableObject
 
     //TODO:: Add currency after merge!
 
-    [Header("Primary Modifier")]
-    public EquipmentModifierDefinition PrimaryModifier;
-
-    [Header("Secondary Modifier Pool")]
-    public List<EquipmentModifierDefinition> SecondaryModifiers;
+    [Header("Modifiers")]
+    public EquipmentModifierDefinition EquipmentModifierDefinition;
 }
